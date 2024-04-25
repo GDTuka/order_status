@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "132174404140",
+    "project_id": "order-status-cd24b",
+    "storage_bucket": "order-status-cd24b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132174404140:android:12ff565a43e5256be68f89",
+        "android_client_info": {
+          "package_name": "com.example.order_status"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuUFeHIxMXR0dkBYA1oUqHnm_Jp49tl1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
