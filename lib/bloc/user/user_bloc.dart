@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:order_status/data/models/local/enums/user_sort_enum.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
 import 'package:order_status/domain/user/user_repository.dart';
@@ -25,6 +26,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     on<_SetNewUserAdmin>(_setNewUserAdmin);
     on<_ToggleNewUserForm>(_toggleNewUserForm);
     on<_SetUserAfterBaseLogin>(_setUserAfterBaseLogin);
+    on<_GetUsers>(_loadUsers);
   }
 
   TextEditingController adminNewUserNameController = TextEditingController();
@@ -36,6 +38,17 @@ class UserBloc extends Bloc<UserEvents, UserState> {
   AuthRepository authRepository;
 
   UserRepository userRepository;
+
+  Future<void> _loadUsers(_GetUsers event, Emitter<UserState> emit) async {
+    final sort = state.sort;
+
+    try {
+      final users = await userRepository.getUsers(sort);
+      emit(state.copyWith(users: users));
+    } on Exception {
+      emit(state.copyWith(userLoadingError: 'При загрузке пользователей произошла ошибка'));
+    }
+  }
 
   Future<void> _login(_Login event, Emitter<UserState> emit) async {
     final authId = event.authId;

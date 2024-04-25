@@ -17,4 +17,9 @@ class UserEvents with _$UserEvents {
   // Сетает нового пользователя стейт после базовой авторизации
   // Базовая авторизация это кода пользователь авторизуется по локальному authId
   const factory UserEvents.setUserAfterBaseLogin(UserRemoteModel user) = _SetUserAfterBaseLogin;
+
+  // Получение списка пользователей
+  const factory UserEvents.getUsers() = _GetUsers;
+
+  const factory UserEvents.setUserSort() = _SetUserSort;
 }

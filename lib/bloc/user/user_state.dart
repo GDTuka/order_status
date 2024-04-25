@@ -13,9 +13,15 @@ class UserState with _$UserState {
     @Default(null) String? authError,
     // Текст ошибки добавления новго юзера
     @Default(null) String? addNewUserError,
+    // Текст ошибки загрузки пользователей
+    @Default(null) String? userLoadingError,
     // Инфа о том является ли новый юзер админом
     @Default(false) bool newUserIsAdmin,
     // Инфа о том активна ли сейчас форма добавления новго пользователя
     @Default(false) bool showAddNewUserForm,
+    // Сортировка по отображаемым юзерам
+    @Default(UserSortEnum.all) UserSortEnum sort,
+    // Список пользователей
+    @Default(<UserRemoteModel>[]) List<UserRemoteModel> users,
   }) = _UserState;
 }

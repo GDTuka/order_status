@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:order_status/data/models/local/enums/user_sort_enum.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 
 class UserRDS {
@@ -30,6 +31,32 @@ class UserRDS {
         },
       );
       return currentUser;
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<List<UserRemoteModel>> getUsers(UserSortEnum sort) async {
+    try {
+      List<UserRemoteModel> users = [];
+
+      await _db.collection('users').get().then(
+        (value) {
+          for (final doc in value.docs) {
+            final user = UserRemoteModel.fromJson(doc.data());
+
+            if (sort == UserSortEnum.all) {
+              users.add(user);
+            }
+            if (sort == UserSortEnum.admins) {
+              if (user.isAdmin) {
+                users.add(user);
+              }
+            }
+          }
+        },
+      );
+      return users;
     } on Exception catch (e) {
       throw Exception(e);
     }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:order_status/app/app.dart';
+import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/features/admin/admin_screen.dart';
 import 'package:order_status/features/new_order/new_order_screen.dart';
 import 'package:order_status/features/orders/orders_screen.dart';
@@ -21,6 +23,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   void initState() {
+    
+    getIt<UserBloc>().add(const UserEvents.getUsers());
+
     super.initState();
   }
 

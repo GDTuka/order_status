@@ -23,6 +23,8 @@ mixin _$UserEvents {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$UserEvents {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$UserEvents {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +58,8 @@ mixin _$UserEvents {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +69,8 @@ mixin _$UserEvents {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +80,8 @@ mixin _$UserEvents {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -162,6 +174,8 @@ class _$LoginImpl implements _Login {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) {
     return login(authId);
   }
@@ -174,6 +188,8 @@ class _$LoginImpl implements _Login {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) {
     return login?.call(authId);
   }
@@ -186,6 +202,8 @@ class _$LoginImpl implements _Login {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -203,6 +221,8 @@ class _$LoginImpl implements _Login {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) {
     return login(this);
   }
@@ -215,6 +235,8 @@ class _$LoginImpl implements _Login {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) {
     return login?.call(this);
   }
@@ -227,6 +249,8 @@ class _$LoginImpl implements _Login {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -315,6 +339,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) {
     return setNewUserAdmin(val);
   }
@@ -327,6 +353,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) {
     return setNewUserAdmin?.call(val);
   }
@@ -339,6 +367,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) {
     if (setNewUserAdmin != null) {
@@ -356,6 +386,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) {
     return setNewUserAdmin(this);
   }
@@ -368,6 +400,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) {
     return setNewUserAdmin?.call(this);
   }
@@ -380,6 +414,8 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) {
     if (setNewUserAdmin != null) {
@@ -441,6 +477,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) {
     return createNewUser();
   }
@@ -453,6 +491,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) {
     return createNewUser?.call();
   }
@@ -465,6 +505,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) {
     if (createNewUser != null) {
@@ -482,6 +524,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) {
     return createNewUser(this);
   }
@@ -494,6 +538,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) {
     return createNewUser?.call(this);
   }
@@ -506,6 +552,8 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) {
     if (createNewUser != null) {
@@ -562,6 +610,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) {
     return toggleNewUserForm();
   }
@@ -574,6 +624,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) {
     return toggleNewUserForm?.call();
   }
@@ -586,6 +638,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) {
     if (toggleNewUserForm != null) {
@@ -603,6 +657,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) {
     return toggleNewUserForm(this);
   }
@@ -615,6 +671,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) {
     return toggleNewUserForm?.call(this);
   }
@@ -627,6 +685,8 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) {
     if (toggleNewUserForm != null) {
@@ -711,6 +771,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
     required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
   }) {
     return setUserAfterBaseLogin(user);
   }
@@ -723,6 +785,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
     TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
   }) {
     return setUserAfterBaseLogin?.call(user);
   }
@@ -735,6 +799,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
     TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
     required TResult orElse(),
   }) {
     if (setUserAfterBaseLogin != null) {
@@ -752,6 +818,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
     required TResult Function(_SetUserAfterBaseLogin value)
         setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
   }) {
     return setUserAfterBaseLogin(this);
   }
@@ -764,6 +832,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult? Function(_CreateNewUser value)? createNewUser,
     TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
   }) {
     return setUserAfterBaseLogin?.call(this);
   }
@@ -776,6 +846,8 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult Function(_CreateNewUser value)? createNewUser,
     TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
     TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
     required TResult orElse(),
   }) {
     if (setUserAfterBaseLogin != null) {
@@ -796,6 +868,272 @@ abstract class _SetUserAfterBaseLogin implements UserEvents {
 }
 
 /// @nodoc
+abstract class _$$GetUsersImplCopyWith<$Res> {
+  factory _$$GetUsersImplCopyWith(
+          _$GetUsersImpl value, $Res Function(_$GetUsersImpl) then) =
+      __$$GetUsersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetUsersImplCopyWithImpl<$Res>
+    extends _$UserEventsCopyWithImpl<$Res, _$GetUsersImpl>
+    implements _$$GetUsersImplCopyWith<$Res> {
+  __$$GetUsersImplCopyWithImpl(
+      _$GetUsersImpl _value, $Res Function(_$GetUsersImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetUsersImpl implements _GetUsers {
+  const _$GetUsersImpl();
+
+  @override
+  String toString() {
+    return 'UserEvents.getUsers()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetUsersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String authId) login,
+    required TResult Function(bool val) setNewUserAdmin,
+    required TResult Function() createNewUser,
+    required TResult Function() toggleNewUserForm,
+    required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
+  }) {
+    return getUsers();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String authId)? login,
+    TResult? Function(bool val)? setNewUserAdmin,
+    TResult? Function()? createNewUser,
+    TResult? Function()? toggleNewUserForm,
+    TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
+  }) {
+    return getUsers?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String authId)? login,
+    TResult Function(bool val)? setNewUserAdmin,
+    TResult Function()? createNewUser,
+    TResult Function()? toggleNewUserForm,
+    TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
+    required TResult orElse(),
+  }) {
+    if (getUsers != null) {
+      return getUsers();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_SetNewUserAdmin value) setNewUserAdmin,
+    required TResult Function(_CreateNewUser value) createNewUser,
+    required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
+    required TResult Function(_SetUserAfterBaseLogin value)
+        setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
+  }) {
+    return getUsers(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult? Function(_CreateNewUser value)? createNewUser,
+    TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
+  }) {
+    return getUsers?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult Function(_CreateNewUser value)? createNewUser,
+    TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
+    required TResult orElse(),
+  }) {
+    if (getUsers != null) {
+      return getUsers(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUsers implements UserEvents {
+  const factory _GetUsers() = _$GetUsersImpl;
+}
+
+/// @nodoc
+abstract class _$$SetUserSortImplCopyWith<$Res> {
+  factory _$$SetUserSortImplCopyWith(
+          _$SetUserSortImpl value, $Res Function(_$SetUserSortImpl) then) =
+      __$$SetUserSortImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetUserSortImplCopyWithImpl<$Res>
+    extends _$UserEventsCopyWithImpl<$Res, _$SetUserSortImpl>
+    implements _$$SetUserSortImplCopyWith<$Res> {
+  __$$SetUserSortImplCopyWithImpl(
+      _$SetUserSortImpl _value, $Res Function(_$SetUserSortImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetUserSortImpl implements _SetUserSort {
+  const _$SetUserSortImpl();
+
+  @override
+  String toString() {
+    return 'UserEvents.setUserSort()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SetUserSortImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String authId) login,
+    required TResult Function(bool val) setNewUserAdmin,
+    required TResult Function() createNewUser,
+    required TResult Function() toggleNewUserForm,
+    required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
+  }) {
+    return setUserSort();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String authId)? login,
+    TResult? Function(bool val)? setNewUserAdmin,
+    TResult? Function()? createNewUser,
+    TResult? Function()? toggleNewUserForm,
+    TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
+  }) {
+    return setUserSort?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String authId)? login,
+    TResult Function(bool val)? setNewUserAdmin,
+    TResult Function()? createNewUser,
+    TResult Function()? toggleNewUserForm,
+    TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
+    required TResult orElse(),
+  }) {
+    if (setUserSort != null) {
+      return setUserSort();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_SetNewUserAdmin value) setNewUserAdmin,
+    required TResult Function(_CreateNewUser value) createNewUser,
+    required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
+    required TResult Function(_SetUserAfterBaseLogin value)
+        setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
+  }) {
+    return setUserSort(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult? Function(_CreateNewUser value)? createNewUser,
+    TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
+  }) {
+    return setUserSort?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult Function(_CreateNewUser value)? createNewUser,
+    TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
+    required TResult orElse(),
+  }) {
+    if (setUserSort != null) {
+      return setUserSort(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetUserSort implements UserEvents {
+  const factory _SetUserSort() = _$SetUserSortImpl;
+}
+
+/// @nodoc
 mixin _$UserState {
 // Текущей юзер
   UserRemoteModel? get user =>
@@ -807,10 +1145,16 @@ mixin _$UserState {
   String? get authError =>
       throw _privateConstructorUsedError; // Текст ошибки добавления новго юзера
   String? get addNewUserError =>
+      throw _privateConstructorUsedError; // Текст ошибки загрузки пользователей
+  String? get userLoadingError =>
       throw _privateConstructorUsedError; // Инфа о том является ли новый юзер админом
   bool get newUserIsAdmin =>
       throw _privateConstructorUsedError; // Инфа о том активна ли сейчас форма добавления новго пользователя
-  bool get showAddNewUserForm => throw _privateConstructorUsedError;
+  bool get showAddNewUserForm =>
+      throw _privateConstructorUsedError; // Сортировка по отображаемым юзерам
+  UserSortEnum get sort =>
+      throw _privateConstructorUsedError; // Список пользователей
+  List<UserRemoteModel> get users => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -828,8 +1172,11 @@ abstract class $UserStateCopyWith<$Res> {
       bool isAuthLoading,
       String? authError,
       String? addNewUserError,
+      String? userLoadingError,
       bool newUserIsAdmin,
-      bool showAddNewUserForm});
+      bool showAddNewUserForm,
+      UserSortEnum sort,
+      List<UserRemoteModel> users});
 }
 
 /// @nodoc
@@ -850,8 +1197,11 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
     Object? isAuthLoading = null,
     Object? authError = freezed,
     Object? addNewUserError = freezed,
+    Object? userLoadingError = freezed,
     Object? newUserIsAdmin = null,
     Object? showAddNewUserForm = null,
+    Object? sort = null,
+    Object? users = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -874,6 +1224,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.addNewUserError
           : addNewUserError // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLoadingError: freezed == userLoadingError
+          ? _value.userLoadingError
+          : userLoadingError // ignore: cast_nullable_to_non_nullable
+              as String?,
       newUserIsAdmin: null == newUserIsAdmin
           ? _value.newUserIsAdmin
           : newUserIsAdmin // ignore: cast_nullable_to_non_nullable
@@ -882,6 +1236,14 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.showAddNewUserForm
           : showAddNewUserForm // ignore: cast_nullable_to_non_nullable
               as bool,
+      sort: null == sort
+          ? _value.sort
+          : sort // ignore: cast_nullable_to_non_nullable
+              as UserSortEnum,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserRemoteModel>,
     ) as $Val);
   }
 }
@@ -900,8 +1262,11 @@ abstract class _$$UserStateImplCopyWith<$Res>
       bool isAuthLoading,
       String? authError,
       String? addNewUserError,
+      String? userLoadingError,
       bool newUserIsAdmin,
-      bool showAddNewUserForm});
+      bool showAddNewUserForm,
+      UserSortEnum sort,
+      List<UserRemoteModel> users});
 }
 
 /// @nodoc
@@ -920,8 +1285,11 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? isAuthLoading = null,
     Object? authError = freezed,
     Object? addNewUserError = freezed,
+    Object? userLoadingError = freezed,
     Object? newUserIsAdmin = null,
     Object? showAddNewUserForm = null,
+    Object? sort = null,
+    Object? users = null,
   }) {
     return _then(_$UserStateImpl(
       user: freezed == user
@@ -944,6 +1312,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.addNewUserError
           : addNewUserError // ignore: cast_nullable_to_non_nullable
               as String?,
+      userLoadingError: freezed == userLoadingError
+          ? _value.userLoadingError
+          : userLoadingError // ignore: cast_nullable_to_non_nullable
+              as String?,
       newUserIsAdmin: null == newUserIsAdmin
           ? _value.newUserIsAdmin
           : newUserIsAdmin // ignore: cast_nullable_to_non_nullable
@@ -952,6 +1324,14 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.showAddNewUserForm
           : showAddNewUserForm // ignore: cast_nullable_to_non_nullable
               as bool,
+      sort: null == sort
+          ? _value.sort
+          : sort // ignore: cast_nullable_to_non_nullable
+              as UserSortEnum,
+      users: null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as List<UserRemoteModel>,
     ));
   }
 }
@@ -965,8 +1345,12 @@ class _$UserStateImpl implements _UserState {
       this.isAuthLoading = false,
       this.authError = null,
       this.addNewUserError = null,
+      this.userLoadingError = null,
       this.newUserIsAdmin = false,
-      this.showAddNewUserForm = false});
+      this.showAddNewUserForm = false,
+      this.sort = UserSortEnum.all,
+      final List<UserRemoteModel> users = const <UserRemoteModel>[]})
+      : _users = users;
 
 // Текущей юзер
   @override
@@ -988,6 +1372,10 @@ class _$UserStateImpl implements _UserState {
   @override
   @JsonKey()
   final String? addNewUserError;
+// Текст ошибки загрузки пользователей
+  @override
+  @JsonKey()
+  final String? userLoadingError;
 // Инфа о том является ли новый юзер админом
   @override
   @JsonKey()
@@ -996,10 +1384,24 @@ class _$UserStateImpl implements _UserState {
   @override
   @JsonKey()
   final bool showAddNewUserForm;
+// Сортировка по отображаемым юзерам
+  @override
+  @JsonKey()
+  final UserSortEnum sort;
+// Список пользователей
+  final List<UserRemoteModel> _users;
+// Список пользователей
+  @override
+  @JsonKey()
+  List<UserRemoteModel> get users {
+    if (_users is EqualUnmodifiableListView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
 
   @override
   String toString() {
-    return 'UserState(user: $user, isAdminPageLoading: $isAdminPageLoading, isAuthLoading: $isAuthLoading, authError: $authError, addNewUserError: $addNewUserError, newUserIsAdmin: $newUserIsAdmin, showAddNewUserForm: $showAddNewUserForm)';
+    return 'UserState(user: $user, isAdminPageLoading: $isAdminPageLoading, isAuthLoading: $isAuthLoading, authError: $authError, addNewUserError: $addNewUserError, userLoadingError: $userLoadingError, newUserIsAdmin: $newUserIsAdmin, showAddNewUserForm: $showAddNewUserForm, sort: $sort, users: $users)';
   }
 
   @override
@@ -1016,10 +1418,14 @@ class _$UserStateImpl implements _UserState {
                 other.authError == authError) &&
             (identical(other.addNewUserError, addNewUserError) ||
                 other.addNewUserError == addNewUserError) &&
+            (identical(other.userLoadingError, userLoadingError) ||
+                other.userLoadingError == userLoadingError) &&
             (identical(other.newUserIsAdmin, newUserIsAdmin) ||
                 other.newUserIsAdmin == newUserIsAdmin) &&
             (identical(other.showAddNewUserForm, showAddNewUserForm) ||
-                other.showAddNewUserForm == showAddNewUserForm));
+                other.showAddNewUserForm == showAddNewUserForm) &&
+            (identical(other.sort, sort) || other.sort == sort) &&
+            const DeepCollectionEquality().equals(other._users, _users));
   }
 
   @override
@@ -1030,8 +1436,11 @@ class _$UserStateImpl implements _UserState {
       isAuthLoading,
       authError,
       addNewUserError,
+      userLoadingError,
       newUserIsAdmin,
-      showAddNewUserForm);
+      showAddNewUserForm,
+      sort,
+      const DeepCollectionEquality().hash(_users));
 
   @JsonKey(ignore: true)
   @override
@@ -1047,8 +1456,11 @@ abstract class _UserState implements UserState {
       final bool isAuthLoading,
       final String? authError,
       final String? addNewUserError,
+      final String? userLoadingError,
       final bool newUserIsAdmin,
-      final bool showAddNewUserForm}) = _$UserStateImpl;
+      final bool showAddNewUserForm,
+      final UserSortEnum sort,
+      final List<UserRemoteModel> users}) = _$UserStateImpl;
 
   @override // Текущей юзер
   UserRemoteModel? get user;
@@ -1060,10 +1472,16 @@ abstract class _UserState implements UserState {
   String? get authError;
   @override // Текст ошибки добавления новго юзера
   String? get addNewUserError;
+  @override // Текст ошибки загрузки пользователей
+  String? get userLoadingError;
   @override // Инфа о том является ли новый юзер админом
   bool get newUserIsAdmin;
   @override // Инфа о том активна ли сейчас форма добавления новго пользователя
   bool get showAddNewUserForm;
+  @override // Сортировка по отображаемым юзерам
+  UserSortEnum get sort;
+  @override // Список пользователей
+  List<UserRemoteModel> get users;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

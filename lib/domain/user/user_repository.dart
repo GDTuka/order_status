@@ -1,3 +1,4 @@
+import 'package:order_status/data/models/local/enums/user_sort_enum.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
 
@@ -15,6 +16,15 @@ class UserRepository {
         return newUser;
       }
       return null;
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<List<UserRemoteModel>> getUsers(UserSortEnum sort) async {
+    try {
+      final res = await _userRDS.getUsers(sort);
+      return res;
     } on Exception catch (e) {
       throw Exception(e);
     }
