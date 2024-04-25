@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:order_status/features/auth/auth_screen.dart';
+import 'package:order_status/features/stats/stats_screen.dart';
+import 'package:order_status/navigation/navigation_screen.dart';
 
 final getIt = GetIt.instance;
 
@@ -20,6 +23,11 @@ class _AppState extends State<App> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      routes: {
+        '/': (context) => const NavigationScreen(),
+        '/stats': (context) => const StatsScreen(),
+        '/auth': (context) => const AuthScreen(),
+      },
     );
   }
 }
