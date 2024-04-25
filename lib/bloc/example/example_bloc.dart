@@ -11,11 +11,12 @@
 //       : super(const ExampleState(
 //           count: 1,
 //         )) {
-//     on<_DoSthm>((event, state) {});
+//     on<_DoSthm>((event, state) {
+//      Создаёт новый экземпляр класса, при этом изменяет только те поля которые будут прокинуты в копи виз 
+//     final newState = state.copyWith(
+//      count: newCount
+// )
+// 
+// });
 //   }
-// }
-
-// class User {
-//   User(this.name);
-//   String name;
 // }
