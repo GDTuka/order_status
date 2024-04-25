@@ -1,0 +1,22 @@
+import 'package:order_status/data/models/remote/user/user_remote_model.dart';
+import 'package:order_status/data/rds/user_rds/user_rds.dart';
+
+class UserRepository {
+  UserRepository({
+    required UserRDS userRDS,
+  }) : _userRDS = userRDS;
+  final UserRDS _userRDS;
+
+  Future<UserRemoteModel?> createNewUser(UserRemoteModel newUser) async {
+    try {
+      final res = await _userRDS.createUser(newUser.toJson());
+
+      if (res == true) {
+        return newUser;
+      }
+      return null;
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+}

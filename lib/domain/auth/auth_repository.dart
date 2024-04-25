@@ -27,16 +27,18 @@ class AuthRepository {
     }
   }
 
-  Future<void> getIsAuth() async {
+  Future<UserRemoteModel?> getIsAuth() async {
     final authId = _authLDS.read();
 
     if (authId == null) {
       isAuth = false;
-      return;
+      return null;
     }
 
     final res = await login(authId);
 
     isAuth = res != null;
+
+    return res;
   }
 }

@@ -9,6 +9,7 @@ import 'package:order_status/data/lds/auth/auth_lds.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
+import 'package:order_status/domain/user/user_repository.dart';
 import 'package:order_status/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,13 +32,15 @@ Future<void> _registerDependencies() async {
 
   getIt.registerSingleton<UserRDS>(UserRDS(db: getIt()));
 
+  getIt.registerSingleton<UserRepository>(UserRepository(userRDS: getIt()));
+
   getIt.registerSingleton<SharedPreferences>(shared);
 
   getIt.registerSingleton<AuthLDS>(AuthLDS(prefs: shared));
 
   getIt.registerSingleton<AuthRepository>(AuthRepository(authLDS: getIt(), userRDS: getIt()));
 
-  getIt.registerSingleton<UserBloc>(UserBloc(authRepository: getIt()));
+  getIt.registerSingleton<UserBloc>(UserBloc(authRepository: getIt(), userRepository: getIt()));
 
   getIt.registerSingleton<OrdersBloc>(OrdersBloc());
 
@@ -52,5 +55,9 @@ Future<void> _auth() async {
     await auth.signInAnonymously();
   }
 
-  await getIt<AuthRepository>().getIsAuth();
+  final res = await getIt<AuthRepository>().getIsAuth();
+
+  if (res != null) {
+    getIt<UserBloc>().add(UserEvents.setUserAfterBaseLogin(res));
+  }
 }

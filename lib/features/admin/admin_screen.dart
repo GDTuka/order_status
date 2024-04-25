@@ -1,10 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:order_status/app/app.dart';
+import 'package:order_status/bloc/user/user_bloc.dart';
+import 'package:order_status/features/admin/widgets/user_form.dart';
+import 'package:order_status/widgets/button/default_app_button.dart';
 
 class AdminScreen extends StatelessWidget {
   const AdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BlocConsumer<UserBloc, UserState>(
+      bloc: getIt(),
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(
+              title: const Text('Админ панель'),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      DefaultAppButton(
+                        onTap: () => getIt<UserBloc>().add(const UserEvents.toggleNewUserForm()),
+                        content: const Text('Добавить пользователя'),
+                      ),
+                      if (state.showAddNewUserForm) ...[
+                        const SizedBox(height: 10),
+                        const UserForm(),
+                      ]
+                    ],
+                  ),
+                  if (state.isAdminPageLoading) const Center(child: CircularProgressIndicator())
+                ],
+              ),
+            ));
+      },
+      listener: (context, state) {},
+    );
   }
 }

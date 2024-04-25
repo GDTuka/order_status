@@ -18,15 +18,17 @@ class UserRDS {
     try {
       UserRemoteModel? currentUser;
 
-      await _db.collection('users').get().then((value) {
-        for (final doc in value.docs) {
-          final user = UserRemoteModel.fromJson(doc.data());
+      await _db.collection('users').get().then(
+        (value) {
+          for (final doc in value.docs) {
+            final user = UserRemoteModel.fromJson(doc.data());
 
-          if (user.authId == authId) {
-            currentUser = user;
+            if (user.authId == authId) {
+              currentUser = user;
+            }
           }
-        }
-      });
+        },
+      );
       return currentUser;
     } on Exception catch (e) {
       throw Exception(e);
