@@ -1,13 +1,42 @@
 import 'package:order_status/data/lds/auth/auth_lds.dart';
+import 'package:order_status/data/models/remote/user/user_remote_model.dart';
+import 'package:order_status/data/rds/user_rds/user_rds.dart';
 
 class AuthRepository {
-  AuthRepository({required AuthLDS authLDS}) : _authLDS = authLDS;
+  AuthRepository({
+    required AuthLDS authLDS,
+    required UserRDS userRDS,
+  })  : _authLDS = authLDS,
+        _userRDS = userRDS;
+
   final AuthLDS _authLDS;
+  final UserRDS _userRDS;
+
+  bool isAuth = false;
 
   // Возвращает то авторизован пользователь или нет
-  Future<bool> login(String id) async {
-    //TODO() добавить проверку на авторизацию на бэке
-    await _authLDS.write(id);
-    return true;
+  Future<UserRemoteModel?> login(String authId) async {
+    try {
+      final res = await _userRDS.getUserByAuthId(authId);
+      if (res != null) {
+        await _authLDS.write(authId);
+      }
+      return res;
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<void> getIsAuth() async {
+    final authId = _authLDS.read();
+
+    if (authId == null) {
+      isAuth = false;
+      return;
+    }
+
+    final res = await login(authId);
+
+    isAuth = res != null;
   }
 }

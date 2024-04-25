@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserEvents {
+  String get authId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() login,
+    required TResult Function(String authId) login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? login,
+    TResult? Function(String authId)? login,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? login,
+    TResult Function(String authId)? login,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$UserEvents {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UserEventsCopyWith<UserEvents> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,8 @@ abstract class $UserEventsCopyWith<$Res> {
   factory $UserEventsCopyWith(
           UserEvents value, $Res Function(UserEvents) then) =
       _$UserEventsCopyWithImpl<$Res, UserEvents>;
+  @useResult
+  $Res call({String authId});
 }
 
 /// @nodoc
@@ -66,13 +73,29 @@ class _$UserEventsCopyWithImpl<$Res, $Val extends UserEvents>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? authId = null,
+  }) {
+    return _then(_value.copyWith(
+      authId: null == authId
+          ? _value.authId
+          : authId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$LoginImplCopyWith<$Res> {
+abstract class _$$LoginImplCopyWith<$Res> implements $UserEventsCopyWith<$Res> {
   factory _$$LoginImplCopyWith(
           _$LoginImpl value, $Res Function(_$LoginImpl) then) =
       __$$LoginImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String authId});
 }
 
 /// @nodoc
@@ -82,51 +105,75 @@ class __$$LoginImplCopyWithImpl<$Res>
   __$$LoginImplCopyWithImpl(
       _$LoginImpl _value, $Res Function(_$LoginImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? authId = null,
+  }) {
+    return _then(_$LoginImpl(
+      null == authId
+          ? _value.authId
+          : authId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoginImpl implements _Login {
-  const _$LoginImpl();
+  const _$LoginImpl(this.authId);
+
+  @override
+  final String authId;
 
   @override
   String toString() {
-    return 'UserEvents.login()';
+    return 'UserEvents.login(authId: $authId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoginImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoginImpl &&
+            (identical(other.authId, authId) || other.authId == authId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, authId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
+      __$$LoginImplCopyWithImpl<_$LoginImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() login,
+    required TResult Function(String authId) login,
   }) {
-    return login();
+    return login(authId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? login,
+    TResult? Function(String authId)? login,
   }) {
-    return login?.call();
+    return login?.call(authId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? login,
+    TResult Function(String authId)? login,
     required TResult orElse(),
   }) {
     if (login != null) {
-      return login();
+      return login(authId);
     }
     return orElse();
   }
@@ -161,13 +208,21 @@ class _$LoginImpl implements _Login {
 }
 
 abstract class _Login implements UserEvents {
-  const factory _Login() = _$LoginImpl;
+  const factory _Login(final String authId) = _$LoginImpl;
+
+  @override
+  String get authId;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$UserState {
-//TODO() remove when real data
-  int get count => throw _privateConstructorUsedError;
+  UserRemoteModel? get user => throw _privateConstructorUsedError;
+  bool get isAuthLoading => throw _privateConstructorUsedError;
+  String? get authError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -179,7 +234,7 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({int count});
+  $Res call({UserRemoteModel? user, bool isAuthLoading, String? authError});
 }
 
 /// @nodoc
@@ -195,13 +250,23 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = null,
+    Object? user = freezed,
+    Object? isAuthLoading = null,
+    Object? authError = freezed,
   }) {
     return _then(_value.copyWith(
-      count: null == count
-          ? _value.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserRemoteModel?,
+      isAuthLoading: null == isAuthLoading
+          ? _value.isAuthLoading
+          : isAuthLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authError: freezed == authError
+          ? _value.authError
+          : authError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -214,7 +279,7 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int count});
+  $Res call({UserRemoteModel? user, bool isAuthLoading, String? authError});
 }
 
 /// @nodoc
@@ -228,13 +293,23 @@ class __$$UserStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = null,
+    Object? user = freezed,
+    Object? isAuthLoading = null,
+    Object? authError = freezed,
   }) {
     return _then(_$UserStateImpl(
-      count: null == count
-          ? _value.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserRemoteModel?,
+      isAuthLoading: null == isAuthLoading
+          ? _value.isAuthLoading
+          : isAuthLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authError: freezed == authError
+          ? _value.authError
+          : authError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -242,16 +317,22 @@ class __$$UserStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserStateImpl implements _UserState {
-  const _$UserStateImpl({this.count = 0});
+  const _$UserStateImpl(
+      {this.user = null, this.isAuthLoading = false, this.authError = null});
 
-//TODO() remove when real data
   @override
   @JsonKey()
-  final int count;
+  final UserRemoteModel? user;
+  @override
+  @JsonKey()
+  final bool isAuthLoading;
+  @override
+  @JsonKey()
+  final String? authError;
 
   @override
   String toString() {
-    return 'UserState(count: $count)';
+    return 'UserState(user: $user, isAuthLoading: $isAuthLoading, authError: $authError)';
   }
 
   @override
@@ -259,11 +340,15 @@ class _$UserStateImpl implements _UserState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserStateImpl &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.isAuthLoading, isAuthLoading) ||
+                other.isAuthLoading == isAuthLoading) &&
+            (identical(other.authError, authError) ||
+                other.authError == authError));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, count);
+  int get hashCode => Object.hash(runtimeType, user, isAuthLoading, authError);
 
   @JsonKey(ignore: true)
   @override
@@ -273,10 +358,17 @@ class _$UserStateImpl implements _UserState {
 }
 
 abstract class _UserState implements UserState {
-  const factory _UserState({final int count}) = _$UserStateImpl;
+  const factory _UserState(
+      {final UserRemoteModel? user,
+      final bool isAuthLoading,
+      final String? authError}) = _$UserStateImpl;
 
-  @override //TODO() remove when real data
-  int get count;
+  @override
+  UserRemoteModel? get user;
+  @override
+  bool get isAuthLoading;
+  @override
+  String? get authError;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
