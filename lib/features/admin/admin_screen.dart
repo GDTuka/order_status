@@ -34,7 +34,8 @@ class AdminScreen extends StatelessWidget {
                       ),
                       if (state.showAddNewUserForm) ...[
                         const SliverToBoxAdapter(child: SizedBox(height: 10)),
-                        const SliverToBoxAdapter(child: UserForm()),
+                         SliverToBoxAdapter(child: UserForm(
+                        )),
                       ],
                       const SliverToBoxAdapter(
                         child: SizedBox(height: 20),
@@ -44,6 +45,9 @@ class AdminScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return UserWidget(
                             userRemoteModel: state.users[index],
+                            deleteUser: () => getIt<UserBloc>().add(UserEvents.deleteUser(index)),
+                            editUser: () => getIt<UserBloc>().add(UserEvents.openEditUserForm(index)),
+                            copyUserAuthId: () => getIt<UserBloc>().add(UserEvents.copyUserAuthId(index)),
                           );
                         },
                         separatorBuilder: (context, index) {

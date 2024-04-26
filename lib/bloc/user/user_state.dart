@@ -19,6 +19,10 @@ class UserState with _$UserState {
     @Default(false) bool newUserIsAdmin,
     // Инфа о том активна ли сейчас форма добавления новго пользователя
     @Default(false) bool showAddNewUserForm,
+
+    // Редактируется ли сейчас пользователь
+    @Default(false) bool isUserEditing,
+
     // Сортировка по отображаемым юзерам
     @Default(UserSortEnum.all) UserSortEnum sort,
     // Список пользователей

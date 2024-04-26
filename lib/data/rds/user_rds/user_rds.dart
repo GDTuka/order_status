@@ -61,4 +61,49 @@ class UserRDS {
       throw Exception(e);
     }
   }
+
+  Future<void> deleteUser(String authId) async {
+    try {
+      String? id;
+      await _db.collection('users').get().then(
+        (value) async {
+          for (final doc in value.docs) {
+            final user = UserRemoteModel.fromJson(doc.data());
+
+            if (user.authId == authId) {
+              id = doc.id;
+            }
+          }
+          if (id != null) {
+            await _db.collection('users').doc(id).delete();
+          }
+        },
+      );
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<void> updateUser(Map<String, dynamic> userMap) async {
+    try {
+      String? id;
+
+      await _db.collection('users').get().then(
+        (value) async {
+          for (final doc in value.docs) {
+            final user = UserRemoteModel.fromJson(doc.data());
+
+            if (user.authId == userMap['authId']) {
+              id = doc.id;
+            }
+          }
+          if (id != null) {
+            await _db.collection('users').doc(id).update(userMap);
+          }
+        },
+      );
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
 }

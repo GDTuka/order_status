@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -27,6 +28,10 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     on<_ToggleNewUserForm>(_toggleNewUserForm);
     on<_SetUserAfterBaseLogin>(_setUserAfterBaseLogin);
     on<_GetUsers>(_loadUsers);
+    on<_DeleteUser>(_deleteUser);
+    on<_EditUser>(_editUser);
+    on<_CopyUserAuthId>(_copyUserAuthId);
+    on<_OpenEditUserForm>(_openEditUserForm);
   }
 
   TextEditingController adminNewUserNameController = TextEditingController();
@@ -38,6 +43,8 @@ class UserBloc extends Bloc<UserEvents, UserState> {
   AuthRepository authRepository;
 
   UserRepository userRepository;
+
+  int selectedForEditingUser = 0;
 
   Future<void> _loadUsers(_GetUsers event, Emitter<UserState> emit) async {
     final sort = state.sort;
@@ -85,6 +92,77 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     );
   }
 
+  Future<void> _deleteUser(_DeleteUser event, Emitter<UserState> emit) async {
+    final user = state.users[event.userIndex];
+
+    try {
+      await userRepository.deleteUser(user.authId);
+
+      emit(
+        state.copyWith(
+          users: List<UserRemoteModel>.from(state.users)..removeAt(event.userIndex),
+        ),
+      );
+    } on Exception {
+      //TODO() Добавить всплывающую ошибку
+    }
+  }
+
+  Future<void> _editUser(_EditUser event, Emitter<UserState> emit) async {
+    final user = state.users[selectedForEditingUser];
+
+    user.name = adminNewUserNameController.text;
+
+    user.surname = adminNewUserSurnameController.text;
+
+    user.thirdName = adminNewUserThirdNameController.text;
+
+    user.isAdmin = state.newUserIsAdmin;
+
+    try {
+      await userRepository.updateUser(user);
+
+      final newUserList = <UserRemoteModel>[...state.users];
+
+      newUserList[selectedForEditingUser] = user;
+
+      emit(
+        state.copyWith(
+          users: newUserList,
+          newUserIsAdmin: false,
+          isUserEditing: false,
+          showAddNewUserForm: false,
+        ),
+      );
+    } on Exception {
+      // TODO() показать через уведомления ошибку
+    }
+  }
+
+  Future<void> _openEditUserForm(_OpenEditUserForm event, Emitter<UserState> emit) async {
+    final user = state.users[event.userIndex];
+
+    adminNewUserNameController.text = user.name ?? "";
+
+    adminNewUserSurnameController.text = user.surname ?? "";
+
+    adminNewUserThirdNameController.text = user.thirdName ?? "";
+
+    selectedForEditingUser = event.userIndex;
+
+    emit(state.copyWith(
+      newUserIsAdmin: user.isAdmin,
+      isUserEditing: true,
+      showAddNewUserForm: true,
+    ));
+  }
+
+  Future<void> _copyUserAuthId(_CopyUserAuthId event, Emitter<UserState> emit) async {
+    final user = state.users[event.userIndex];
+
+    Clipboard.setData(ClipboardData(text: user.authId));
+  }
+
   Future<void> _toggleNewUserForm(_ToggleNewUserForm event, Emitter<UserState> emit) async {
     emit(state.copyWith(showAddNewUserForm: !state.showAddNewUserForm));
   }
@@ -104,12 +182,13 @@ class UserBloc extends Bloc<UserEvents, UserState> {
       // Получать res и добавлять его в список пользователей который будет отображаться
       userRepository.createNewUser(
         UserRemoteModel(
-            authId: uuid.v1(),
-            isAdmin: isNewAdmin,
-            isSuperAdmin: false,
-            name: name,
-            surname: surname,
-            thirdName: thirdName),
+          authId: uuid.v1(),
+          isAdmin: isNewAdmin,
+          isSuperAdmin: false,
+          name: name,
+          surname: surname,
+          thirdName: thirdName,
+        ),
       );
 
       adminNewUserNameController.clear();

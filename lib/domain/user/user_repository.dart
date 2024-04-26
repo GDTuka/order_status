@@ -29,4 +29,20 @@ class UserRepository {
       throw Exception(e);
     }
   }
+
+  Future<void> deleteUser(String authId) async {
+    try {
+      await _userRDS.deleteUser(authId);
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<void> updateUser(UserRemoteModel user) async {
+    try {
+      await _userRDS.updateUser(user.toJson());
+    } on Exception catch (e) {
+      throw Exception(e);
+    }
+  }
 }

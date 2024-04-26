@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 
 class UserWidget extends StatelessWidget {
-  const UserWidget({super.key, required this.userRemoteModel});
+  const UserWidget(
+      {super.key,
+      required this.userRemoteModel,
+      required this.deleteUser,
+      required this.editUser,
+      required this.copyUserAuthId});
 
   final UserRemoteModel userRemoteModel;
+
+  final VoidCallback deleteUser;
+  final VoidCallback editUser;
+  final VoidCallback copyUserAuthId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +41,19 @@ class UserWidget extends StatelessWidget {
             Column(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: deleteUser,
                   icon: const Icon(
                     Icons.delete,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: editUser,
                   icon: const Icon(
                     Icons.edit,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: copyUserAuthId,
                   icon: const Icon(
                     Icons.copy,
                   ),

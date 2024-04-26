@@ -21,5 +21,18 @@ class UserEvents with _$UserEvents {
   // Получение списка пользователей
   const factory UserEvents.getUsers() = _GetUsers;
 
+  // Устанавливает сортировку пользователей либо админы либо пользователи либо все. Изначально установлено все
   const factory UserEvents.setUserSort() = _SetUserSort;
+
+  // Удаляет пользователя
+  const factory UserEvents.deleteUser(int userIndex) = _DeleteUser;
+
+  // Редактирует пользователя
+  const factory UserEvents.editUser() = _EditUser;
+
+  // Копирует authId пользователя в буфер обмена
+  const factory UserEvents.copyUserAuthId(int userIndex) = _CopyUserAuthId;
+
+  // Открывает форму редактирования пользователя
+  const factory UserEvents.openEditUserForm(int userIndex) = _OpenEditUserForm;
 }

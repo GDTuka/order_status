@@ -5,7 +5,9 @@ import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/widgets/button/default_app_button.dart';
 
 class UserForm extends StatelessWidget {
-  const UserForm({super.key});
+  const UserForm({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +73,15 @@ class UserForm extends StatelessWidget {
                   ),
                 const SizedBox(height: 20),
                 DefaultAppButton(
-                  onTap: () => getIt<UserBloc>().add(const UserEvents.createNewUser()),
-                  content: const Text(
-                    'Создать пользователя',
+                  onTap: () async {
+                    if (state.isUserEditing) {
+                      getIt<UserBloc>().add(const UserEvents.editUser());
+                    } else {
+                      getIt<UserBloc>().add(const UserEvents.createNewUser());
+                    }
+                  },
+                  content: Text(
+                    state.isUserEditing ? 'Сохранить' : 'Создать пользователя',
                   ),
                 )
               ],
