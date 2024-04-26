@@ -5,12 +5,9 @@ import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/widgets/button/default_app_button.dart';
 
 class UserForm extends StatelessWidget {
-  UserForm({
+  const UserForm({
     super.key,
   });
-
-  double scale = 1;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
@@ -23,7 +20,6 @@ class UserForm extends StatelessWidget {
             }
           },
           child: AnimatedContainer(
-            transform: Matrix4.identity()..scale(scale),
             curve: Curves.easeIn,
             height: state.showAddNewUserForm ? 424 : 45,
             width: double.infinity,

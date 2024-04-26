@@ -8,7 +8,6 @@ import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/features/admin/widgets/user_form.dart';
 import 'package:order_status/features/admin/widgets/user_widget.dart';
-import 'package:order_status/widgets/button/default_app_button.dart';
 
 // ignore: must_be_immutable
 class AdminScreen extends StatelessWidget {
@@ -76,7 +75,7 @@ class AdminScreen extends StatelessWidget {
                         ),
                       ),
                       const SliverToBoxAdapter(child: SizedBox(height: 20)),
-                      SliverToBoxAdapter(child: UserForm()),
+                      const SliverToBoxAdapter(child: UserForm()),
                       const SliverToBoxAdapter(
                         child: SizedBox(height: 20),
                       ),
