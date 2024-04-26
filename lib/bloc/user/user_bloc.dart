@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:order_status/app/app.dart';
+import 'package:order_status/bloc/overlay_bloc/overlay_bloc.dart';
+import 'package:order_status/bloc/overlay_bloc/overlay_event.dart';
 import 'package:order_status/data/models/local/enums/user_sort_enum.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
@@ -125,7 +128,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
         ),
       );
     } on Exception {
-      //TODO() Добавить всплывающую ошибку
+      getIt<OverlayBloc>().add(ShowNotificationEvent(content: const Text('Ошибка при редактировании пользователя')));
     }
   }
 
@@ -156,7 +159,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
         ),
       );
     } on Exception {
-      // TODO() показать через уведомления ошибку
+      getIt<OverlayBloc>().add(ShowNotificationEvent(content: const Text('Ошибка при редактировании пользователя')));
     }
   }
 

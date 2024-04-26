@@ -4,9 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:order_status/app/app.dart';
 import 'package:order_status/bloc/orders/orders_bloc.dart';
+import 'package:order_status/bloc/overlay_bloc/overlay_bloc.dart';
 import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/data/lds/auth/auth_lds.dart';
-import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
 import 'package:order_status/domain/user/user_repository.dart';
@@ -43,6 +43,8 @@ Future<void> _registerDependencies() async {
   getIt.registerSingleton<UserBloc>(UserBloc(authRepository: getIt(), userRepository: getIt()));
 
   getIt.registerSingleton<OrdersBloc>(OrdersBloc());
+
+  getIt.registerSingleton<OverlayBloc>(OverlayBloc());
 
   await _auth();
 }
