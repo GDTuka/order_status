@@ -163,7 +163,7 @@ class UserRDS {
             }
           }
           if (id != null) {
-            await _db.collection('users').doc(id).delete();
+            await _db.collection('users').doc(admin).collection('workers').doc(id).delete();
           }
         },
       );
