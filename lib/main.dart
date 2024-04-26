@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,15 @@ Future<void> main() async {
 
 Future<void> _registerDependencies() async {
   final shared = await SharedPreferences.getInstance();
+
+  Dio dio = Dio(BaseOptions(
+    headers: {
+      'Authorization':
+          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNQTYyMjk3NiIsImp0aSI6ImI1OTNkODRkLTk1MWYtNGIyZi05ZGViLTcxOWExNDM4NWVmZCJ9.si-87k3Aw5GN67orgJpoyTXC0C2OpWwRCKzLogRWawU',
+    },
+  ));
+
+  getIt.registerSingleton<Dio>(dio);
 
   getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 
