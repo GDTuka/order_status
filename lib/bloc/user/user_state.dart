@@ -19,13 +19,15 @@ class UserState with _$UserState {
     @Default(false) bool newUserIsAdmin,
     // Инфа о том активна ли сейчас форма добавления новго пользователя
     @Default(false) bool showAddNewUserForm,
-
     // Редактируется ли сейчас пользователь
     @Default(false) bool isUserEditing,
-
     // Сортировка по отображаемым юзерам
     @Default(UserSortEnum.all) UserSortEnum sort,
     // Список пользователей
     @Default(<UserRemoteModel>[]) List<UserRemoteModel> users,
+    // Список отсортированных пользователей по тексту который вбил пользователь в текстовое поле
+    @Default(<UserRemoteModel>[]) List<UserRemoteModel> sortedUserList,
+    // Чтобы отслеживать ищет ли пользователь сейчас
+    @Default(false) bool isSearchingNow,
   }) = _UserState;
 }

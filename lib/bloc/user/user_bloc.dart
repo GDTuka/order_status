@@ -32,6 +32,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     on<_EditUser>(_editUser);
     on<_CopyUserAuthId>(_copyUserAuthId);
     on<_OpenEditUserForm>(_openEditUserForm);
+    on<_SearchByUser>(_searchByUser);
   }
 
   TextEditingController adminNewUserNameController = TextEditingController();
@@ -39,6 +40,8 @@ class UserBloc extends Bloc<UserEvents, UserState> {
   TextEditingController adminNewUserSurnameController = TextEditingController();
 
   TextEditingController adminNewUserThirdNameController = TextEditingController();
+
+  TextEditingController searchController = TextEditingController();
 
   AuthRepository authRepository;
 
@@ -69,6 +72,10 @@ class UserBloc extends Bloc<UserEvents, UserState> {
           authError: user == null ? 'Неверный код авторизации' : null,
         ),
       );
+      if (user != null) {
+        // ignore: use_build_context_synchronously
+        Navigator.of(event.context).pushReplacementNamed('/navigation');
+      }
     } on Exception {
       emit(
         state.copyWith(
@@ -88,6 +95,20 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     emit(
       state.copyWith(
         newUserIsAdmin: event.val,
+      ),
+    );
+  }
+
+  Future<void> _searchByUser(_SearchByUser event, Emitter<UserState> emit) async {
+    final term = searchController.text.toLowerCase().replaceAll(' ', '');
+    final newUserList = List<UserRemoteModel>.from(state.users)
+        .where((e) => '${e.name?.toLowerCase()}${e.surname?.toLowerCase()}${e.thirdName?.toLowerCase()}'.contains(term))
+        .toList();
+
+    emit(
+      state.copyWith(
+        sortedUserList: newUserList,
+        isSearchingNow: term.isNotEmpty,
       ),
     );
   }

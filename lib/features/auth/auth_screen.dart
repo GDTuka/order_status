@@ -12,22 +12,17 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
-      listener: (context, state) {
-        if (state.user != null) {
-          Navigator.of(context).pushReplacementNamed('/navigation');
-        }
-      },
+      listener: (context, state) {},
       bloc: getIt<UserBloc>(),
       builder: (context, state) {
         // Нормально не делаю из принциа и того сколько есть времени
-
         return Scaffold(
           appBar: AppBar(),
           floatingActionButton: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DefaultAppButton(
               content: const Text('Авторизоваться'),
-              onTap: () => getIt<UserBloc>().add(UserEvents.login(_authIdController.text)),
+              onTap: () => getIt<UserBloc>().add(UserEvents.login(_authIdController.text, context)),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

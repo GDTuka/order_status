@@ -18,12 +18,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
   List<Widget> screens = [
     const NewOrderScreen(),
     const OrdersScreen(),
-    const AdminScreen(),
+    AdminScreen(),
   ];
 
   @override
   void initState() {
-    
     getIt<UserBloc>().add(const UserEvents.getUsers());
 
     super.initState();
