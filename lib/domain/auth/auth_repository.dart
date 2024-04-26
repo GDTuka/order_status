@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:order_status/data/lds/auth/auth_lds.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
@@ -18,11 +17,15 @@ class AuthRepository {
   bool isAuth = false;
 
   // Возвращает то авторизован пользователь или нет
-  Future<UserRemoteModel?> login(String authId) async {
+  Future<UserRemoteModel?> login(
+      String authId, String adminId, bool isAdmin) async {
     try {
-      final res = await _userRDS.getUserByAuthId(authId);
+      final res = await _userRDS.getUserByAuthId(authId, adminId, isAdmin);
+
       if (res != null) {
-        await _authLDS.write(authId);
+        await _authLDS.writeUserId(authId);
+        await _authLDS.writeAdminId(adminId);
+        await _authLDS.writeIsAdmin(isAdmin);
       }
       return res;
     } on Exception catch (e) {
@@ -31,14 +34,18 @@ class AuthRepository {
   }
 
   Future<UserRemoteModel?> getIsAuth() async {
-    final authId = _authLDS.read();
+    final authId = _authLDS.readUserId();
 
-    if (authId == null) {
+    final adminid = _authLDS.readAdminId();
+
+    final isAdmin = _authLDS.readIsAdmin();
+
+    if (authId == null || adminid == null || isAdmin == null) {
       isAuth = false;
       return null;
     }
 
-    final res = await login(authId);
+    final res = await login(authId, adminid, isAdmin);
 
     isAuth = res != null;
 

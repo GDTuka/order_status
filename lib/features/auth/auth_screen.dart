@@ -9,6 +9,8 @@ class AuthScreen extends StatelessWidget {
 
   final TextEditingController _authIdController = TextEditingController();
 
+  final TextEditingController _adminController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
@@ -22,7 +24,12 @@ class AuthScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: DefaultAppButton(
               content: const Text('Авторизоваться'),
-              onTap: () => getIt<UserBloc>().add(UserEvents.login(_authIdController.text, context)),
+              onTap: () => getIt<UserBloc>().add(UserEvents.login(
+                _authIdController.text,
+                _adminController.text,
+                state.tryAdminAuth,
+                context,
+              )),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -56,12 +63,30 @@ class AuthScreen extends StatelessWidget {
                         ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        controller: _adminController,
+                        autofocus: true,
+                        decoration: const InputDecoration(
+                          hintText: 'Введите код администратора',
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
                         controller: _authIdController,
                         autofocus: true,
                         decoration: const InputDecoration(
                           hintText: 'Введите код авторизации',
                         ),
                       ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: state.tryAdminAuth,
+                            onChanged: (val) => getIt<UserBloc>().add(UserEvents.changeTryAdminAuth(val ?? false)),
+                          ),
+                          const Flexible(child: Text('Войти как админ'))
+                        ],
+                      )
                     ],
                   ),
                 ),

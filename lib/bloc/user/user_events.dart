@@ -3,7 +3,7 @@ part of 'user_bloc.dart';
 @freezed
 class UserEvents with _$UserEvents {
   // Логинит пользователя
-  const factory UserEvents.login(String authId, BuildContext context) = _Login;
+  const factory UserEvents.login(String authId, String adminId, bool isAdmin, BuildContext context) = _Login;
 
   // Сетает нового пользователя в форме как админа
   const factory UserEvents.setNewUserAdmin(bool val) = _SetNewUserAdmin;
@@ -37,4 +37,6 @@ class UserEvents with _$UserEvents {
   const factory UserEvents.openEditUserForm(int userIndex) = _OpenEditUserForm;
 
   const factory UserEvents.searchByUser() = _SearchByUser;
+
+  const factory UserEvents.changeTryAdminAuth(bool val) = _ChangeTryAdminAuth;
 }

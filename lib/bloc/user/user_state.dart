@@ -29,5 +29,7 @@ class UserState with _$UserState {
     @Default(<UserRemoteModel>[]) List<UserRemoteModel> sortedUserList,
     // Чтобы отслеживать ищет ли пользователь сейчас
     @Default(false) bool isSearchingNow,
+    // Чтобы войти как админ
+    @Default(false) bool tryAdminAuth,
   }) = _UserState;
 }
