@@ -24,6 +24,15 @@ class _AppState extends State<App> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      builder: (context, child) {
+        if (child == null) return Container();
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: const TextScaler.linear(1.0),
+          ), //set desired text scale factor here
+          child: child,
+        );
+      },
       routes: {
         '/navigation': (context) => const NavigationScreen(),
         '/stats': (context) => const StatsScreen(),

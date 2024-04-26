@@ -76,16 +76,7 @@ class AdminScreen extends StatelessWidget {
                         ),
                       ),
                       const SliverToBoxAdapter(child: SizedBox(height: 20)),
-                      SliverToBoxAdapter(
-                        child: DefaultAppButton(
-                          onTap: () => getIt<UserBloc>().add(const UserEvents.toggleNewUserForm()),
-                          content: const Text('Добавить пользователя'),
-                        ),
-                      ),
-                      if (state.showAddNewUserForm) ...[
-                        const SliverToBoxAdapter(child: SizedBox(height: 10)),
-                        const SliverToBoxAdapter(child: UserForm()),
-                      ],
+                      SliverToBoxAdapter(child: UserForm()),
                       const SliverToBoxAdapter(
                         child: SizedBox(height: 20),
                       ),
