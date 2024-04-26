@@ -38,7 +38,8 @@ class _AppState extends State<App> {
         '/stats': (context) => const StatsScreen(),
         '/auth': (context) => AuthScreen(),
       },
-      initialRoute: getIt<AuthRepository>().isAuth ? '/navigation' : '/auth',
+      initialRoute:
+          getIt<AuthRepository>().isAuth ? '/navigation' : '/navigation',
     );
   }
 }
