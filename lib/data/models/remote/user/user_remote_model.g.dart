@@ -14,6 +14,7 @@ UserRemoteModel _$UserRemoteModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       surname: json['surname'] as String?,
       thirdName: json['thirdName'] as String?,
+      adminAuthId: json['adminAuthId'] as String?,
     );
 
 Map<String, dynamic> _$UserRemoteModelToJson(UserRemoteModel instance) =>
@@ -22,6 +23,7 @@ Map<String, dynamic> _$UserRemoteModelToJson(UserRemoteModel instance) =>
       'surname': instance.surname,
       'thirdName': instance.thirdName,
       'authId': instance.authId,
+      'adminAuthId': instance.adminAuthId,
       'isAdmin': instance.isAdmin,
       'isSuperAdmin': instance.isSuperAdmin,
     };

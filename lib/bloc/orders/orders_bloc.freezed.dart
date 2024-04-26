@@ -64,12 +64,14 @@ mixin _$OrdersEvent {
 
 /// @nodoc
 abstract class $OrdersEventCopyWith<$Res> {
-  factory $OrdersEventCopyWith(OrdersEvent value, $Res Function(OrdersEvent) then) =
+  factory $OrdersEventCopyWith(
+          OrdersEvent value, $Res Function(OrdersEvent) then) =
       _$OrdersEventCopyWithImpl<$Res, OrdersEvent>;
 }
 
 /// @nodoc
-class _$OrdersEventCopyWithImpl<$Res, $Val extends OrdersEvent> implements $OrdersEventCopyWith<$Res> {
+class _$OrdersEventCopyWithImpl<$Res, $Val extends OrdersEvent>
+    implements $OrdersEventCopyWith<$Res> {
   _$OrdersEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -80,14 +82,18 @@ class _$OrdersEventCopyWithImpl<$Res, $Val extends OrdersEvent> implements $Orde
 
 /// @nodoc
 abstract class _$$LoadOrdersImplCopyWith<$Res> {
-  factory _$$LoadOrdersImplCopyWith(_$LoadOrdersImpl value, $Res Function(_$LoadOrdersImpl) then) =
+  factory _$$LoadOrdersImplCopyWith(
+          _$LoadOrdersImpl value, $Res Function(_$LoadOrdersImpl) then) =
       __$$LoadOrdersImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadOrdersImplCopyWithImpl<$Res> extends _$OrdersEventCopyWithImpl<$Res, _$LoadOrdersImpl>
+class __$$LoadOrdersImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$LoadOrdersImpl>
     implements _$$LoadOrdersImplCopyWith<$Res> {
-  __$$LoadOrdersImplCopyWithImpl(_$LoadOrdersImpl _value, $Res Function(_$LoadOrdersImpl) _then) : super(_value, _then);
+  __$$LoadOrdersImplCopyWithImpl(
+      _$LoadOrdersImpl _value, $Res Function(_$LoadOrdersImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -102,7 +108,8 @@ class _$LoadOrdersImpl implements _LoadOrders {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$LoadOrdersImpl);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadOrdersImpl);
   }
 
   @override
@@ -183,16 +190,19 @@ abstract class _LoadOrders implements OrdersEvent {
 
 /// @nodoc
 abstract class _$$GetOrderDataImplCopyWith<$Res> {
-  factory _$$GetOrderDataImplCopyWith(_$GetOrderDataImpl value, $Res Function(_$GetOrderDataImpl) then) =
+  factory _$$GetOrderDataImplCopyWith(
+          _$GetOrderDataImpl value, $Res Function(_$GetOrderDataImpl) then) =
       __$$GetOrderDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String orderId});
 }
 
 /// @nodoc
-class __$$GetOrderDataImplCopyWithImpl<$Res> extends _$OrdersEventCopyWithImpl<$Res, _$GetOrderDataImpl>
+class __$$GetOrderDataImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$GetOrderDataImpl>
     implements _$$GetOrderDataImplCopyWith<$Res> {
-  __$$GetOrderDataImplCopyWithImpl(_$GetOrderDataImpl _value, $Res Function(_$GetOrderDataImpl) _then)
+  __$$GetOrderDataImplCopyWithImpl(
+      _$GetOrderDataImpl _value, $Res Function(_$GetOrderDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -313,21 +323,26 @@ abstract class _GetOrderData implements OrdersEvent {
 
   String get orderId;
   @JsonKey(ignore: true)
-  _$$GetOrderDataImplCopyWith<_$GetOrderDataImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$GetOrderDataImplCopyWith<_$GetOrderDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$SortOrdersImplCopyWith<$Res> {
-  factory _$$SortOrdersImplCopyWith(_$SortOrdersImpl value, $Res Function(_$SortOrdersImpl) then) =
+  factory _$$SortOrdersImplCopyWith(
+          _$SortOrdersImpl value, $Res Function(_$SortOrdersImpl) then) =
       __$$SortOrdersImplCopyWithImpl<$Res>;
   @useResult
   $Res call({OrderSortEnum orderSort});
 }
 
 /// @nodoc
-class __$$SortOrdersImplCopyWithImpl<$Res> extends _$OrdersEventCopyWithImpl<$Res, _$SortOrdersImpl>
+class __$$SortOrdersImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$SortOrdersImpl>
     implements _$$SortOrdersImplCopyWith<$Res> {
-  __$$SortOrdersImplCopyWithImpl(_$SortOrdersImpl _value, $Res Function(_$SortOrdersImpl) _then) : super(_value, _then);
+  __$$SortOrdersImplCopyWithImpl(
+      _$SortOrdersImpl _value, $Res Function(_$SortOrdersImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -361,7 +376,8 @@ class _$SortOrdersImpl implements _SortOrders {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SortOrdersImpl &&
-            (identical(other.orderSort, orderSort) || other.orderSort == orderSort));
+            (identical(other.orderSort, orderSort) ||
+                other.orderSort == orderSort));
   }
 
   @override
@@ -447,7 +463,8 @@ abstract class _SortOrders implements OrdersEvent {
 
   OrderSortEnum get orderSort;
   @JsonKey(ignore: true)
-  _$$SortOrdersImplCopyWith<_$SortOrdersImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$SortOrdersImplCopyWith<_$SortOrdersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -455,19 +472,22 @@ mixin _$OrdersState {
   int get count => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OrdersStateCopyWith<OrdersState> get copyWith => throw _privateConstructorUsedError;
+  $OrdersStateCopyWith<OrdersState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $OrdersStateCopyWith<$Res> {
-  factory $OrdersStateCopyWith(OrdersState value, $Res Function(OrdersState) then) =
+  factory $OrdersStateCopyWith(
+          OrdersState value, $Res Function(OrdersState) then) =
       _$OrdersStateCopyWithImpl<$Res, OrdersState>;
   @useResult
   $Res call({int count});
 }
 
 /// @nodoc
-class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState> implements $OrdersStateCopyWith<$Res> {
+class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState>
+    implements $OrdersStateCopyWith<$Res> {
   _$OrdersStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -490,8 +510,10 @@ class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState> implements $Orde
 }
 
 /// @nodoc
-abstract class _$$OrdersStateImplCopyWith<$Res> implements $OrdersStateCopyWith<$Res> {
-  factory _$$OrdersStateImplCopyWith(_$OrdersStateImpl value, $Res Function(_$OrdersStateImpl) then) =
+abstract class _$$OrdersStateImplCopyWith<$Res>
+    implements $OrdersStateCopyWith<$Res> {
+  factory _$$OrdersStateImplCopyWith(
+          _$OrdersStateImpl value, $Res Function(_$OrdersStateImpl) then) =
       __$$OrdersStateImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -499,9 +521,11 @@ abstract class _$$OrdersStateImplCopyWith<$Res> implements $OrdersStateCopyWith<
 }
 
 /// @nodoc
-class __$$OrdersStateImplCopyWithImpl<$Res> extends _$OrdersStateCopyWithImpl<$Res, _$OrdersStateImpl>
+class __$$OrdersStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrdersStateImpl>
     implements _$$OrdersStateImplCopyWith<$Res> {
-  __$$OrdersStateImplCopyWithImpl(_$OrdersStateImpl _value, $Res Function(_$OrdersStateImpl) _then)
+  __$$OrdersStateImplCopyWithImpl(
+      _$OrdersStateImpl _value, $Res Function(_$OrdersStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -557,5 +581,6 @@ abstract class _OrdersState implements OrdersState {
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$OrdersStateImplCopyWith<_$OrdersStateImpl> get copyWith => throw _privateConstructorUsedError;
+  _$$OrdersStateImplCopyWith<_$OrdersStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

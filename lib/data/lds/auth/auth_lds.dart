@@ -6,11 +6,25 @@ class AuthLDS {
   });
   SharedPreferences prefs;
 
-  final String _key = 'authLDS';
+  final String _userId = 'authLDS';
 
-  Future<void> write(String value) async => await prefs.setString(_key, value);
+  final String _adminId = 'authLdsAdmin';
 
-  String? read() => prefs.getString(_key);
+  final String _isAdmin = 'idAdmin';
 
-  Future<void> delete() async => await prefs.remove(_key);
+  Future<void> writeUserId(String value) async => await prefs.setString(_userId, value);
+
+  Future<void> writeAdminId(String value) async => await prefs.setString(_adminId, value);
+
+  Future<void> writeIsAdmin(bool value) async => await prefs.setBool(_isAdmin, value);
+
+  String? readAdminId() => prefs.getString(_adminId);
+
+  String? readUserId() => prefs.getString(_userId);
+
+  bool? readIsAdmin() => prefs.getBool(_isAdmin);
+
+  Future<void> deleteUSerId() async => await prefs.remove(_userId);
+
+  Future<void> deleteAdminId() async => await prefs.remove(_adminId);
 }

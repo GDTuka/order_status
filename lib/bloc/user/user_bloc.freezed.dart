@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserEvents {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -30,11 +32,14 @@ mixin _$UserEvents {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -46,11 +51,14 @@ mixin _$UserEvents {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -62,6 +70,7 @@ mixin _$UserEvents {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +89,7 @@ mixin _$UserEvents {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +106,7 @@ mixin _$UserEvents {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +123,7 @@ mixin _$UserEvents {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,7 +153,8 @@ abstract class _$$LoginImplCopyWith<$Res> {
           _$LoginImpl value, $Res Function(_$LoginImpl) then) =
       __$$LoginImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String authId, BuildContext context});
+  $Res call(
+      {String authId, String adminId, bool isAdmin, BuildContext context});
 }
 
 /// @nodoc
@@ -156,6 +169,8 @@ class __$$LoginImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? authId = null,
+    Object? adminId = null,
+    Object? isAdmin = null,
     Object? context = null,
   }) {
     return _then(_$LoginImpl(
@@ -163,6 +178,14 @@ class __$$LoginImplCopyWithImpl<$Res>
           ? _value.authId
           : authId // ignore: cast_nullable_to_non_nullable
               as String,
+      null == adminId
+          ? _value.adminId
+          : adminId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == isAdmin
+          ? _value.isAdmin
+          : isAdmin // ignore: cast_nullable_to_non_nullable
+              as bool,
       null == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
@@ -174,16 +197,20 @@ class __$$LoginImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginImpl implements _Login {
-  const _$LoginImpl(this.authId, this.context);
+  const _$LoginImpl(this.authId, this.adminId, this.isAdmin, this.context);
 
   @override
   final String authId;
+  @override
+  final String adminId;
+  @override
+  final bool isAdmin;
   @override
   final BuildContext context;
 
   @override
   String toString() {
-    return 'UserEvents.login(authId: $authId, context: $context)';
+    return 'UserEvents.login(authId: $authId, adminId: $adminId, isAdmin: $isAdmin, context: $context)';
   }
 
   @override
@@ -192,11 +219,14 @@ class _$LoginImpl implements _Login {
         (other.runtimeType == runtimeType &&
             other is _$LoginImpl &&
             (identical(other.authId, authId) || other.authId == authId) &&
+            (identical(other.adminId, adminId) || other.adminId == adminId) &&
+            (identical(other.isAdmin, isAdmin) || other.isAdmin == isAdmin) &&
             (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authId, context);
+  int get hashCode =>
+      Object.hash(runtimeType, authId, adminId, isAdmin, context);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +237,9 @@ class _$LoginImpl implements _Login {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -219,14 +251,17 @@ class _$LoginImpl implements _Login {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
-    return login(authId, context);
+    return login(authId, adminId, isAdmin, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -238,14 +273,17 @@ class _$LoginImpl implements _Login {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
-    return login?.call(authId, context);
+    return login?.call(authId, adminId, isAdmin, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -257,10 +295,11 @@ class _$LoginImpl implements _Login {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (login != null) {
-      return login(authId, context);
+      return login(authId, adminId, isAdmin, context);
     }
     return orElse();
   }
@@ -281,6 +320,7 @@ class _$LoginImpl implements _Login {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return login(this);
   }
@@ -300,6 +340,7 @@ class _$LoginImpl implements _Login {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return login?.call(this);
   }
@@ -319,6 +360,7 @@ class _$LoginImpl implements _Login {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -329,10 +371,12 @@ class _$LoginImpl implements _Login {
 }
 
 abstract class _Login implements UserEvents {
-  const factory _Login(final String authId, final BuildContext context) =
-      _$LoginImpl;
+  const factory _Login(final String authId, final String adminId,
+      final bool isAdmin, final BuildContext context) = _$LoginImpl;
 
   String get authId;
+  String get adminId;
+  bool get isAdmin;
   BuildContext get context;
   @JsonKey(ignore: true)
   _$$LoginImplCopyWith<_$LoginImpl> get copyWith =>
@@ -404,7 +448,9 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -416,6 +462,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return setNewUserAdmin(val);
   }
@@ -423,7 +470,9 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -435,6 +484,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return setNewUserAdmin?.call(val);
   }
@@ -442,7 +492,9 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -454,6 +506,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setNewUserAdmin != null) {
@@ -478,6 +531,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return setNewUserAdmin(this);
   }
@@ -497,6 +551,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return setNewUserAdmin?.call(this);
   }
@@ -516,6 +571,7 @@ class _$SetNewUserAdminImpl implements _SetNewUserAdmin {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setNewUserAdmin != null) {
@@ -572,7 +628,9 @@ class _$CreateNewUserImpl implements _CreateNewUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -584,6 +642,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return createNewUser();
   }
@@ -591,7 +650,9 @@ class _$CreateNewUserImpl implements _CreateNewUser {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -603,6 +664,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return createNewUser?.call();
   }
@@ -610,7 +672,9 @@ class _$CreateNewUserImpl implements _CreateNewUser {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -622,6 +686,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (createNewUser != null) {
@@ -646,6 +711,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return createNewUser(this);
   }
@@ -665,6 +731,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return createNewUser?.call(this);
   }
@@ -684,6 +751,7 @@ class _$CreateNewUserImpl implements _CreateNewUser {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (createNewUser != null) {
@@ -735,7 +803,9 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -747,6 +817,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return toggleNewUserForm();
   }
@@ -754,7 +825,9 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -766,6 +839,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return toggleNewUserForm?.call();
   }
@@ -773,7 +847,9 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -785,6 +861,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (toggleNewUserForm != null) {
@@ -809,6 +886,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return toggleNewUserForm(this);
   }
@@ -828,6 +906,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return toggleNewUserForm?.call(this);
   }
@@ -847,6 +926,7 @@ class _$ToggleNewUserFormImpl implements _ToggleNewUserForm {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (toggleNewUserForm != null) {
@@ -926,7 +1006,9 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -938,6 +1020,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return setUserAfterBaseLogin(user);
   }
@@ -945,7 +1028,9 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -957,6 +1042,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return setUserAfterBaseLogin?.call(user);
   }
@@ -964,7 +1050,9 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -976,6 +1064,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setUserAfterBaseLogin != null) {
@@ -1000,6 +1089,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return setUserAfterBaseLogin(this);
   }
@@ -1019,6 +1109,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return setUserAfterBaseLogin?.call(this);
   }
@@ -1038,6 +1129,7 @@ class _$SetUserAfterBaseLoginImpl implements _SetUserAfterBaseLogin {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setUserAfterBaseLogin != null) {
@@ -1095,7 +1187,9 @@ class _$GetUsersImpl implements _GetUsers {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -1107,6 +1201,7 @@ class _$GetUsersImpl implements _GetUsers {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return getUsers();
   }
@@ -1114,7 +1209,9 @@ class _$GetUsersImpl implements _GetUsers {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -1126,6 +1223,7 @@ class _$GetUsersImpl implements _GetUsers {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return getUsers?.call();
   }
@@ -1133,7 +1231,9 @@ class _$GetUsersImpl implements _GetUsers {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -1145,6 +1245,7 @@ class _$GetUsersImpl implements _GetUsers {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (getUsers != null) {
@@ -1169,6 +1270,7 @@ class _$GetUsersImpl implements _GetUsers {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return getUsers(this);
   }
@@ -1188,6 +1290,7 @@ class _$GetUsersImpl implements _GetUsers {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return getUsers?.call(this);
   }
@@ -1207,6 +1310,7 @@ class _$GetUsersImpl implements _GetUsers {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (getUsers != null) {
@@ -1258,7 +1362,9 @@ class _$SetUserSortImpl implements _SetUserSort {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -1270,6 +1376,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return setUserSort();
   }
@@ -1277,7 +1384,9 @@ class _$SetUserSortImpl implements _SetUserSort {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -1289,6 +1398,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return setUserSort?.call();
   }
@@ -1296,7 +1406,9 @@ class _$SetUserSortImpl implements _SetUserSort {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -1308,6 +1420,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setUserSort != null) {
@@ -1332,6 +1445,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return setUserSort(this);
   }
@@ -1351,6 +1465,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return setUserSort?.call(this);
   }
@@ -1370,6 +1485,7 @@ class _$SetUserSortImpl implements _SetUserSort {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (setUserSort != null) {
@@ -1448,7 +1564,9 @@ class _$DeleteUserImpl implements _DeleteUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -1460,6 +1578,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return deleteUser(userIndex);
   }
@@ -1467,7 +1586,9 @@ class _$DeleteUserImpl implements _DeleteUser {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -1479,6 +1600,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return deleteUser?.call(userIndex);
   }
@@ -1486,7 +1608,9 @@ class _$DeleteUserImpl implements _DeleteUser {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -1498,6 +1622,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (deleteUser != null) {
@@ -1522,6 +1647,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return deleteUser(this);
   }
@@ -1541,6 +1667,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return deleteUser?.call(this);
   }
@@ -1560,6 +1687,7 @@ class _$DeleteUserImpl implements _DeleteUser {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (deleteUser != null) {
@@ -1616,7 +1744,9 @@ class _$EditUserImpl implements _EditUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -1628,6 +1758,7 @@ class _$EditUserImpl implements _EditUser {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return editUser();
   }
@@ -1635,7 +1766,9 @@ class _$EditUserImpl implements _EditUser {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -1647,6 +1780,7 @@ class _$EditUserImpl implements _EditUser {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return editUser?.call();
   }
@@ -1654,7 +1788,9 @@ class _$EditUserImpl implements _EditUser {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -1666,6 +1802,7 @@ class _$EditUserImpl implements _EditUser {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (editUser != null) {
@@ -1690,6 +1827,7 @@ class _$EditUserImpl implements _EditUser {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return editUser(this);
   }
@@ -1709,6 +1847,7 @@ class _$EditUserImpl implements _EditUser {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return editUser?.call(this);
   }
@@ -1728,6 +1867,7 @@ class _$EditUserImpl implements _EditUser {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (editUser != null) {
@@ -1807,7 +1947,9 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -1819,6 +1961,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return copyUserAuthId(userIndex);
   }
@@ -1826,7 +1969,9 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -1838,6 +1983,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return copyUserAuthId?.call(userIndex);
   }
@@ -1845,7 +1991,9 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -1857,6 +2005,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (copyUserAuthId != null) {
@@ -1881,6 +2030,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return copyUserAuthId(this);
   }
@@ -1900,6 +2050,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return copyUserAuthId?.call(this);
   }
@@ -1919,6 +2070,7 @@ class _$CopyUserAuthIdImpl implements _CopyUserAuthId {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (copyUserAuthId != null) {
@@ -2003,7 +2155,9 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -2015,6 +2169,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return openEditUserForm(userIndex);
   }
@@ -2022,7 +2177,9 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -2034,6 +2191,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return openEditUserForm?.call(userIndex);
   }
@@ -2041,7 +2199,9 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -2053,6 +2213,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (openEditUserForm != null) {
@@ -2077,6 +2238,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return openEditUserForm(this);
   }
@@ -2096,6 +2258,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return openEditUserForm?.call(this);
   }
@@ -2115,6 +2278,7 @@ class _$OpenEditUserFormImpl implements _OpenEditUserForm {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (openEditUserForm != null) {
@@ -2171,7 +2335,9 @@ class _$SearchByUserImpl implements _SearchByUser {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String authId, BuildContext context) login,
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
     required TResult Function(bool val) setNewUserAdmin,
     required TResult Function() createNewUser,
     required TResult Function() toggleNewUserForm,
@@ -2183,6 +2349,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     required TResult Function(int userIndex) copyUserAuthId,
     required TResult Function(int userIndex) openEditUserForm,
     required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
   }) {
     return searchByUser();
   }
@@ -2190,7 +2357,9 @@ class _$SearchByUserImpl implements _SearchByUser {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String authId, BuildContext context)? login,
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult? Function(bool val)? setNewUserAdmin,
     TResult? Function()? createNewUser,
     TResult? Function()? toggleNewUserForm,
@@ -2202,6 +2371,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     TResult? Function(int userIndex)? copyUserAuthId,
     TResult? Function(int userIndex)? openEditUserForm,
     TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
   }) {
     return searchByUser?.call();
   }
@@ -2209,7 +2379,9 @@ class _$SearchByUserImpl implements _SearchByUser {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String authId, BuildContext context)? login,
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
     TResult Function(bool val)? setNewUserAdmin,
     TResult Function()? createNewUser,
     TResult Function()? toggleNewUserForm,
@@ -2221,6 +2393,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     TResult Function(int userIndex)? copyUserAuthId,
     TResult Function(int userIndex)? openEditUserForm,
     TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (searchByUser != null) {
@@ -2245,6 +2418,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     required TResult Function(_CopyUserAuthId value) copyUserAuthId,
     required TResult Function(_OpenEditUserForm value) openEditUserForm,
     required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
   }) {
     return searchByUser(this);
   }
@@ -2264,6 +2438,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult? Function(_OpenEditUserForm value)? openEditUserForm,
     TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
   }) {
     return searchByUser?.call(this);
   }
@@ -2283,6 +2458,7 @@ class _$SearchByUserImpl implements _SearchByUser {
     TResult Function(_CopyUserAuthId value)? copyUserAuthId,
     TResult Function(_OpenEditUserForm value)? openEditUserForm,
     TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
     required TResult orElse(),
   }) {
     if (searchByUser != null) {
@@ -2294,6 +2470,213 @@ class _$SearchByUserImpl implements _SearchByUser {
 
 abstract class _SearchByUser implements UserEvents {
   const factory _SearchByUser() = _$SearchByUserImpl;
+}
+
+/// @nodoc
+abstract class _$$ChangeTryAdminAuthImplCopyWith<$Res> {
+  factory _$$ChangeTryAdminAuthImplCopyWith(_$ChangeTryAdminAuthImpl value,
+          $Res Function(_$ChangeTryAdminAuthImpl) then) =
+      __$$ChangeTryAdminAuthImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool val});
+}
+
+/// @nodoc
+class __$$ChangeTryAdminAuthImplCopyWithImpl<$Res>
+    extends _$UserEventsCopyWithImpl<$Res, _$ChangeTryAdminAuthImpl>
+    implements _$$ChangeTryAdminAuthImplCopyWith<$Res> {
+  __$$ChangeTryAdminAuthImplCopyWithImpl(_$ChangeTryAdminAuthImpl _value,
+      $Res Function(_$ChangeTryAdminAuthImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? val = null,
+  }) {
+    return _then(_$ChangeTryAdminAuthImpl(
+      null == val
+          ? _value.val
+          : val // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeTryAdminAuthImpl implements _ChangeTryAdminAuth {
+  const _$ChangeTryAdminAuthImpl(this.val);
+
+  @override
+  final bool val;
+
+  @override
+  String toString() {
+    return 'UserEvents.changeTryAdminAuth(val: $val)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeTryAdminAuthImpl &&
+            (identical(other.val, val) || other.val == val));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, val);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeTryAdminAuthImplCopyWith<_$ChangeTryAdminAuthImpl> get copyWith =>
+      __$$ChangeTryAdminAuthImplCopyWithImpl<_$ChangeTryAdminAuthImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)
+        login,
+    required TResult Function(bool val) setNewUserAdmin,
+    required TResult Function() createNewUser,
+    required TResult Function() toggleNewUserForm,
+    required TResult Function(UserRemoteModel user) setUserAfterBaseLogin,
+    required TResult Function() getUsers,
+    required TResult Function() setUserSort,
+    required TResult Function(int userIndex) deleteUser,
+    required TResult Function() editUser,
+    required TResult Function(int userIndex) copyUserAuthId,
+    required TResult Function(int userIndex) openEditUserForm,
+    required TResult Function() searchByUser,
+    required TResult Function(bool val) changeTryAdminAuth,
+  }) {
+    return changeTryAdminAuth(val);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
+    TResult? Function(bool val)? setNewUserAdmin,
+    TResult? Function()? createNewUser,
+    TResult? Function()? toggleNewUserForm,
+    TResult? Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult? Function()? getUsers,
+    TResult? Function()? setUserSort,
+    TResult? Function(int userIndex)? deleteUser,
+    TResult? Function()? editUser,
+    TResult? Function(int userIndex)? copyUserAuthId,
+    TResult? Function(int userIndex)? openEditUserForm,
+    TResult? Function()? searchByUser,
+    TResult? Function(bool val)? changeTryAdminAuth,
+  }) {
+    return changeTryAdminAuth?.call(val);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String authId, String adminId, bool isAdmin, BuildContext context)?
+        login,
+    TResult Function(bool val)? setNewUserAdmin,
+    TResult Function()? createNewUser,
+    TResult Function()? toggleNewUserForm,
+    TResult Function(UserRemoteModel user)? setUserAfterBaseLogin,
+    TResult Function()? getUsers,
+    TResult Function()? setUserSort,
+    TResult Function(int userIndex)? deleteUser,
+    TResult Function()? editUser,
+    TResult Function(int userIndex)? copyUserAuthId,
+    TResult Function(int userIndex)? openEditUserForm,
+    TResult Function()? searchByUser,
+    TResult Function(bool val)? changeTryAdminAuth,
+    required TResult orElse(),
+  }) {
+    if (changeTryAdminAuth != null) {
+      return changeTryAdminAuth(val);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_SetNewUserAdmin value) setNewUserAdmin,
+    required TResult Function(_CreateNewUser value) createNewUser,
+    required TResult Function(_ToggleNewUserForm value) toggleNewUserForm,
+    required TResult Function(_SetUserAfterBaseLogin value)
+        setUserAfterBaseLogin,
+    required TResult Function(_GetUsers value) getUsers,
+    required TResult Function(_SetUserSort value) setUserSort,
+    required TResult Function(_DeleteUser value) deleteUser,
+    required TResult Function(_EditUser value) editUser,
+    required TResult Function(_CopyUserAuthId value) copyUserAuthId,
+    required TResult Function(_OpenEditUserForm value) openEditUserForm,
+    required TResult Function(_SearchByUser value) searchByUser,
+    required TResult Function(_ChangeTryAdminAuth value) changeTryAdminAuth,
+  }) {
+    return changeTryAdminAuth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult? Function(_CreateNewUser value)? createNewUser,
+    TResult? Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult? Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult? Function(_GetUsers value)? getUsers,
+    TResult? Function(_SetUserSort value)? setUserSort,
+    TResult? Function(_DeleteUser value)? deleteUser,
+    TResult? Function(_EditUser value)? editUser,
+    TResult? Function(_CopyUserAuthId value)? copyUserAuthId,
+    TResult? Function(_OpenEditUserForm value)? openEditUserForm,
+    TResult? Function(_SearchByUser value)? searchByUser,
+    TResult? Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
+  }) {
+    return changeTryAdminAuth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_SetNewUserAdmin value)? setNewUserAdmin,
+    TResult Function(_CreateNewUser value)? createNewUser,
+    TResult Function(_ToggleNewUserForm value)? toggleNewUserForm,
+    TResult Function(_SetUserAfterBaseLogin value)? setUserAfterBaseLogin,
+    TResult Function(_GetUsers value)? getUsers,
+    TResult Function(_SetUserSort value)? setUserSort,
+    TResult Function(_DeleteUser value)? deleteUser,
+    TResult Function(_EditUser value)? editUser,
+    TResult Function(_CopyUserAuthId value)? copyUserAuthId,
+    TResult Function(_OpenEditUserForm value)? openEditUserForm,
+    TResult Function(_SearchByUser value)? searchByUser,
+    TResult Function(_ChangeTryAdminAuth value)? changeTryAdminAuth,
+    required TResult orElse(),
+  }) {
+    if (changeTryAdminAuth != null) {
+      return changeTryAdminAuth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeTryAdminAuth implements UserEvents {
+  const factory _ChangeTryAdminAuth(final bool val) = _$ChangeTryAdminAuthImpl;
+
+  bool get val;
+  @JsonKey(ignore: true)
+  _$$ChangeTryAdminAuthImplCopyWith<_$ChangeTryAdminAuthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2323,7 +2706,9 @@ mixin _$UserState {
       throw _privateConstructorUsedError; // Список отсортированных пользователей по тексту который вбил пользователь в текстовое поле
   List<UserRemoteModel> get sortedUserList =>
       throw _privateConstructorUsedError; // Чтобы отслеживать ищет ли пользователь сейчас
-  bool get isSearchingNow => throw _privateConstructorUsedError;
+  bool get isSearchingNow =>
+      throw _privateConstructorUsedError; // Чтобы войти как админ
+  bool get tryAdminAuth => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -2348,7 +2733,8 @@ abstract class $UserStateCopyWith<$Res> {
       UserSortEnum sort,
       List<UserRemoteModel> users,
       List<UserRemoteModel> sortedUserList,
-      bool isSearchingNow});
+      bool isSearchingNow,
+      bool tryAdminAuth});
 }
 
 /// @nodoc
@@ -2377,6 +2763,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
     Object? users = null,
     Object? sortedUserList = null,
     Object? isSearchingNow = null,
+    Object? tryAdminAuth = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -2431,6 +2818,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.isSearchingNow
           : isSearchingNow // ignore: cast_nullable_to_non_nullable
               as bool,
+      tryAdminAuth: null == tryAdminAuth
+          ? _value.tryAdminAuth
+          : tryAdminAuth // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -2456,7 +2847,8 @@ abstract class _$$UserStateImplCopyWith<$Res>
       UserSortEnum sort,
       List<UserRemoteModel> users,
       List<UserRemoteModel> sortedUserList,
-      bool isSearchingNow});
+      bool isSearchingNow,
+      bool tryAdminAuth});
 }
 
 /// @nodoc
@@ -2483,6 +2875,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? users = null,
     Object? sortedUserList = null,
     Object? isSearchingNow = null,
+    Object? tryAdminAuth = null,
   }) {
     return _then(_$UserStateImpl(
       user: freezed == user
@@ -2537,6 +2930,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.isSearchingNow
           : isSearchingNow // ignore: cast_nullable_to_non_nullable
               as bool,
+      tryAdminAuth: null == tryAdminAuth
+          ? _value.tryAdminAuth
+          : tryAdminAuth // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2557,7 +2954,8 @@ class _$UserStateImpl implements _UserState {
       this.sort = UserSortEnum.all,
       final List<UserRemoteModel> users = const <UserRemoteModel>[],
       final List<UserRemoteModel> sortedUserList = const <UserRemoteModel>[],
-      this.isSearchingNow = false})
+      this.isSearchingNow = false,
+      this.tryAdminAuth = false})
       : _users = users,
         _sortedUserList = sortedUserList;
 
@@ -2627,10 +3025,14 @@ class _$UserStateImpl implements _UserState {
   @override
   @JsonKey()
   final bool isSearchingNow;
+// Чтобы войти как админ
+  @override
+  @JsonKey()
+  final bool tryAdminAuth;
 
   @override
   String toString() {
-    return 'UserState(user: $user, isAdminPageLoading: $isAdminPageLoading, isAuthLoading: $isAuthLoading, authError: $authError, addNewUserError: $addNewUserError, userLoadingError: $userLoadingError, newUserIsAdmin: $newUserIsAdmin, showAddNewUserForm: $showAddNewUserForm, isUserEditing: $isUserEditing, sort: $sort, users: $users, sortedUserList: $sortedUserList, isSearchingNow: $isSearchingNow)';
+    return 'UserState(user: $user, isAdminPageLoading: $isAdminPageLoading, isAuthLoading: $isAuthLoading, authError: $authError, addNewUserError: $addNewUserError, userLoadingError: $userLoadingError, newUserIsAdmin: $newUserIsAdmin, showAddNewUserForm: $showAddNewUserForm, isUserEditing: $isUserEditing, sort: $sort, users: $users, sortedUserList: $sortedUserList, isSearchingNow: $isSearchingNow, tryAdminAuth: $tryAdminAuth)';
   }
 
   @override
@@ -2660,7 +3062,9 @@ class _$UserStateImpl implements _UserState {
             const DeepCollectionEquality()
                 .equals(other._sortedUserList, _sortedUserList) &&
             (identical(other.isSearchingNow, isSearchingNow) ||
-                other.isSearchingNow == isSearchingNow));
+                other.isSearchingNow == isSearchingNow) &&
+            (identical(other.tryAdminAuth, tryAdminAuth) ||
+                other.tryAdminAuth == tryAdminAuth));
   }
 
   @override
@@ -2678,7 +3082,8 @@ class _$UserStateImpl implements _UserState {
       sort,
       const DeepCollectionEquality().hash(_users),
       const DeepCollectionEquality().hash(_sortedUserList),
-      isSearchingNow);
+      isSearchingNow,
+      tryAdminAuth);
 
   @JsonKey(ignore: true)
   @override
@@ -2701,7 +3106,8 @@ abstract class _UserState implements UserState {
       final UserSortEnum sort,
       final List<UserRemoteModel> users,
       final List<UserRemoteModel> sortedUserList,
-      final bool isSearchingNow}) = _$UserStateImpl;
+      final bool isSearchingNow,
+      final bool tryAdminAuth}) = _$UserStateImpl;
 
   @override // Текущей юзер
   UserRemoteModel? get user;
@@ -2729,6 +3135,8 @@ abstract class _UserState implements UserState {
   List<UserRemoteModel> get sortedUserList;
   @override // Чтобы отслеживать ищет ли пользователь сейчас
   bool get isSearchingNow;
+  @override // Чтобы войти как админ
+  bool get tryAdminAuth;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

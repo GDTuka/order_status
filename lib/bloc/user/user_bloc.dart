@@ -36,6 +36,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     on<_CopyUserAuthId>(_copyUserAuthId);
     on<_OpenEditUserForm>(_openEditUserForm);
     on<_SearchByUser>(_searchByUser);
+    on<_ChangeTryAdminAuth>(_changeAdminAuth);
   }
 
   TextEditingController adminNewUserNameController = TextEditingController();
@@ -65,9 +66,14 @@ class UserBloc extends Bloc<UserEvents, UserState> {
 
   Future<void> _login(_Login event, Emitter<UserState> emit) async {
     final authId = event.authId;
-
+    final adminId = event.adminId;
+    final isAdmin = event.isAdmin;
     try {
-      final user = await authRepository.login(authId);
+      final user = await authRepository.login(
+        authId,
+        adminId,
+        isAdmin,
+      );
 
       emit(
         state.copyWith(
@@ -187,6 +193,12 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     Clipboard.setData(ClipboardData(text: user.authId));
   }
 
+  Future<void> _changeAdminAuth(_ChangeTryAdminAuth event, Emitter<UserState> emit) async {
+    emit(state.copyWith(
+      tryAdminAuth: event.val,
+    ));
+  }
+
   Future<void> _toggleNewUserForm(_ToggleNewUserForm event, Emitter<UserState> emit) async {
     emit(state.copyWith(showAddNewUserForm: !state.showAddNewUserForm));
   }
@@ -203,17 +215,19 @@ class UserBloc extends Bloc<UserEvents, UserState> {
     try {
       Uuid uuid = const Uuid();
 
-      // Получать res и добавлять его в список пользователей который будет отображаться
-      userRepository.createNewUser(
-        UserRemoteModel(
-          authId: uuid.v1(),
-          isAdmin: isNewAdmin,
-          isSuperAdmin: false,
-          name: name,
-          surname: surname,
-          thirdName: thirdName,
-        ),
+      final newUser = UserRemoteModel(
+        authId: uuid.v1(),
+        isAdmin: isNewAdmin,
+        isSuperAdmin: false,
+        name: name,
+        surname: surname,
+        thirdName: thirdName,
+        adminAuthId: isNewAdmin ? uuid.v1() : null,
       );
+      // Получать res и добавлять его в список пользователей который будет отображаться
+      userRepository.createNewUser(newUser);
+
+      final users = <UserRemoteModel>[newUser, ...state.users];
 
       adminNewUserNameController.clear();
       adminNewUserSurnameController.clear();
@@ -222,6 +236,7 @@ class UserBloc extends Bloc<UserEvents, UserState> {
       emit(
         state.copyWith(
           newUserIsAdmin: false,
+          users: users,
           showAddNewUserForm: false,
         ),
       );

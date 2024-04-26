@@ -11,12 +11,14 @@ class UserRemoteModel {
     required this.name,
     required this.surname,
     required this.thirdName,
+    required this.adminAuthId,
   });
   String? name;
   String? surname;
   String? thirdName;
 
   String authId;
+  String? adminAuthId;
 
   bool isAdmin;
   bool isSuperAdmin;
