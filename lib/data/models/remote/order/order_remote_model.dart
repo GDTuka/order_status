@@ -40,5 +40,18 @@ class OrderRemoteModel {
     );
   }
 
-  OrderLocalModel toLocal() => OrderLocalModel();
+  OrderLocalModel toLocal() {
+    return OrderLocalModel(
+      code: code,
+      transactionId: transactionId,
+      qrId: qrId,
+      sbpMerchantId: sbpMerchantId,
+      merchantId: merchantId,
+      amount: amount,
+      currency: currency,
+      paymentStatus: paymentStatus,
+      order: order,
+      createDate: createDate,
+    );
+  }
 }

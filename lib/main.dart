@@ -46,13 +46,16 @@ Future<void> _registerDependencies() async {
 
   getIt.registerSingleton<AuthLDS>(AuthLDS(prefs: shared));
 
-  getIt.registerSingleton<UserRepository>(UserRepository(userRDS: getIt(), authLDS: getIt()));
+  getIt.registerSingleton<UserRepository>(
+      UserRepository(userRDS: getIt(), authLDS: getIt()));
 
   getIt.registerSingleton<SharedPreferences>(shared);
 
-  getIt.registerSingleton<AuthRepository>(AuthRepository(authLDS: getIt(), userRDS: getIt()));
+  getIt.registerSingleton<AuthRepository>(
+      AuthRepository(authLDS: getIt(), userRDS: getIt()));
 
-  getIt.registerSingleton<UserBloc>(UserBloc(authRepository: getIt(), userRepository: getIt()));
+  getIt.registerSingleton<UserBloc>(
+      UserBloc(authRepository: getIt(), userRepository: getIt()));
 
   getIt.registerSingleton<OrdersBloc>(OrdersBloc());
 
