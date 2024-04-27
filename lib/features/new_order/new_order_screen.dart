@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:order_status/bloc/search_orders/search_bloc.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
+import 'package:order_status/domain/order_status/order_repository.dart';
 import 'package:order_status/features/orders/widgets/order_widget.dart';
 
 class NewOrderScreen extends StatefulWidget {
@@ -14,6 +17,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
     return Scaffold(
       body: Center(
         child: Padding(
@@ -25,6 +29,10 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
               ),
               TextFormField(
+                controller: controller,
+                onChanged: (value) {
+                  context.read<SearchBloc>().add(SearchOrderEvent(value));
+                },
                 decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     hintText: 'Введите номер заказа'),

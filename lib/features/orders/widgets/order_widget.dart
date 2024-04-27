@@ -19,8 +19,7 @@ class OrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool paymentStatus =
-        order.paymentStatus == "SUCCESS"; //todo не забыть убрать
+    bool paymentStatus = order.paymentStatus == "SUCCESS";
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
       child: Column(
