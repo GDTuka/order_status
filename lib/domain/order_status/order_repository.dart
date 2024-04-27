@@ -30,7 +30,7 @@ class OrderRepository {
       final orders = ordersLDS.getOrders();
 
       if (orders == null) {
-        final orderJson = res.toLocal().toJson;
+        final orderJson = res.toLocal().toJson();
 
         ordersLDS.setOrders([jsonEncode(orderJson)]);
       } else {
