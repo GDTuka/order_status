@@ -57,7 +57,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ? [
                 DropdownButton<String>(
                   value: _sortOrder,
-                  items: <String>['По убыванию', 'По возрастанию'].map((String value) {
+                  items: <String>['По убыванию', 'По возрастанию']
+                      .map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),

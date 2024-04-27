@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:order_status/data/lds/orders/orders_lds.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
 import 'package:order_status/data/rds/order_rds/order_rds.dart';
@@ -19,7 +18,8 @@ class OrderRepository {
 
     if (orders == null) return [];
 
-    List<OrderLocalModel> savedOrders = orders.map((e) => OrderLocalModel.fromJson(jsonDecode(e))).toList();
+    List<OrderLocalModel> savedOrders =
+        orders.map((e) => OrderLocalModel.fromJson(jsonDecode(e))).toList();
     return savedOrders;
   }
 
@@ -36,11 +36,14 @@ class OrderRepository {
       } else {
         final orders = ordersLDS.getOrders();
 
-        List<OrderLocalModel> savedOrders = orders!.map((e) => OrderLocalModel.fromJson(jsonDecode(e))).toList();
+        List<OrderLocalModel> savedOrders = orders!
+            .map((e) => OrderLocalModel.fromJson(jsonDecode(e)))
+            .toList();
 
         savedOrders.add(res.toLocal());
 
-        List<String> newJsonString = savedOrders.map((e) => jsonEncode(e.toJson())).toList();
+        List<String> newJsonString =
+            savedOrders.map((e) => jsonEncode(e.toJson())).toList();
 
         ordersLDS.setOrders(newJsonString);
       }
