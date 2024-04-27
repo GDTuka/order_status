@@ -57,7 +57,8 @@ class AuthScreen extends StatelessWidget {
                           child: Text(
                             'Авторизуйтесь используя код авторизации',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
                             ),
                             textAlign: TextAlign.center,
                           ),
