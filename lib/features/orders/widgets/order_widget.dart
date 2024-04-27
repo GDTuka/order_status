@@ -88,7 +88,40 @@ class OrderWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Expanded(
-                      child: Column(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Номер заказа:',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: paymentStatus ? Colors.green : Colors.red,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          order.paymentStatus,
+                          style: TextStyle(
+                            color: paymentStatus ? Colors.green : Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: paymentStatus
+                          ? const Color.fromARGB(255, 196, 255, 226)
+                          : const Color.fromARGB(255, 255, 194, 189),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Expanded(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -101,7 +134,7 @@ class OrderWidget extends StatelessWidget {
                           ),
                           const SizedBox(width: 16),
                           Text(
-                            order.qrId,
+                            order.order,
                             style: TextStyle(
                               color: paymentStatus ? Colors.green : Colors.red,
                               fontWeight: FontWeight.bold,

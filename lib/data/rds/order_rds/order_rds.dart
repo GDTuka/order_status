@@ -35,6 +35,10 @@ class OrderRDS {
       'https://pay-test.raif.ru/api/sbp/v1/qr/$qrId/payment-info',
     );
 
+    if (res.data['message'] != null) {
+      return throw FormatException(res.data['message']);
+    }
+
     return OrderRemoteModel.fromJson(res.data);
   }
 }
