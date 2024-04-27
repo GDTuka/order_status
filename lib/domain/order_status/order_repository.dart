@@ -11,6 +11,7 @@ class OrderRepository {
     final res = await orderRDS.getOrderStatusById(qrId);
 
     // Сохранить новый заказ локально
+    // changes
 
     return res.toLocal();
   }
