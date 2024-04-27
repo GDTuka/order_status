@@ -8,8 +8,10 @@ import 'package:order_status/bloc/orders/orders_bloc.dart';
 import 'package:order_status/bloc/overlay_bloc/overlay_bloc.dart';
 import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/data/lds/auth/auth_lds.dart';
+import 'package:order_status/data/rds/order_rds/order_rds.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
+import 'package:order_status/domain/order_status/order_repository.dart';
 import 'package:order_status/domain/user/user_repository.dart';
 import 'package:order_status/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,17 +46,26 @@ Future<void> _registerDependencies() async {
 
   getIt.registerSingleton<AuthLDS>(AuthLDS(prefs: shared));
 
-  getIt.registerSingleton<UserRepository>(UserRepository(userRDS: getIt(), authLDS: getIt()));
+  getIt.registerSingleton<UserRepository>(
+      UserRepository(userRDS: getIt(), authLDS: getIt()));
 
   getIt.registerSingleton<SharedPreferences>(shared);
 
-  getIt.registerSingleton<AuthRepository>(AuthRepository(authLDS: getIt(), userRDS: getIt()));
+  getIt.registerSingleton<AuthRepository>(
+      AuthRepository(authLDS: getIt(), userRDS: getIt()));
 
-  getIt.registerSingleton<UserBloc>(UserBloc(authRepository: getIt(), userRepository: getIt()));
+  getIt.registerSingleton<UserBloc>(
+      UserBloc(authRepository: getIt(), userRepository: getIt()));
 
   getIt.registerSingleton<OrdersBloc>(OrdersBloc());
 
   getIt.registerSingleton<OverlayBloc>(OverlayBloc());
+
+  getIt.registerSingleton<OrderRDS>(OrderRDS(dio: getIt()));
+
+  getIt.registerSingleton<OrderRepository>(OrderRepository(orderRDS: getIt()));
+
+  await getIt<OrderRepository>().devCreteQRWithcode();
 
   await _auth();
 }

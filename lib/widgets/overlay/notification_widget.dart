@@ -16,7 +16,8 @@ class OverlayNotification extends StatefulWidget {
   State<OverlayNotification> createState() => _OverlayNotificationState();
 }
 
-class _OverlayNotificationState extends State<OverlayNotification> with TickerProviderStateMixin {
+class _OverlayNotificationState extends State<OverlayNotification>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 500),
@@ -31,7 +32,8 @@ class _OverlayNotificationState extends State<OverlayNotification> with TickerPr
   Future<void> startAnimation() async {
     await _controller.forward();
 
-    await Future<void>.delayed(Duration(milliseconds: widget.duration.inMilliseconds - 1000));
+    await Future<void>.delayed(
+        Duration(milliseconds: widget.duration.inMilliseconds - 1000));
 
     await _controller.reverse();
   }

@@ -24,9 +24,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   List<Widget> screens = [
     const NewOrderScreen(),
-    const OrdersScreen(
-      orders: [],
-    ),
+    const OrdersScreen(),
     AdminScreen(),
   ];
 
@@ -70,11 +68,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
       currentIndex: _activeIndex,
       items: const [
         //TODO() Добавить нормальные иконки
-        BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Новые заказы'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.abc_outlined), label: 'Все заказы'),
+            icon: Icon(Icons.search), label: 'Новые заказы'),
+        BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Все заказы'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.abc_rounded), label: 'Админка'),
+            icon: Icon(Icons.admin_panel_settings), label: 'Админка'),
       ],
     );
   }

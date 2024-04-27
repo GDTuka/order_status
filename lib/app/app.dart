@@ -21,7 +21,10 @@ class _AppState extends State<App> {
       title: 'Order_Status',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          primary: const Color(0xff6860A8),
+        ),
         useMaterial3: true,
       ),
       builder: (context, child) {

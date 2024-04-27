@@ -32,7 +32,8 @@ class AuthScreen extends StatelessWidget {
               )),
             ),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Stack(
@@ -82,7 +83,8 @@ class AuthScreen extends StatelessWidget {
                         children: [
                           Checkbox(
                             value: state.tryAdminAuth,
-                            onChanged: (val) => getIt<UserBloc>().add(UserEvents.changeTryAdminAuth(val ?? false)),
+                            onChanged: (val) => getIt<UserBloc>().add(
+                                UserEvents.changeTryAdminAuth(val ?? false)),
                           ),
                           const Flexible(child: Text('Войти как админ'))
                         ],
@@ -90,7 +92,8 @@ class AuthScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (state.isAuthLoading) const Center(child: CircularProgressIndicator())
+                if (state.isAuthLoading)
+                  const Center(child: CircularProgressIndicator())
               ],
             ),
           ),

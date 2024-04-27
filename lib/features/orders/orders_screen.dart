@@ -1,49 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:order_status/app/app.dart';
-import 'package:order_status/bloc/orders/orders_bloc.dart';
+import 'package:order_status/data/models/local/order/order_local_model.dart';
 import 'package:order_status/features/orders/widgets/order_widget.dart';
 
-void main() {
-  runApp(
-    const MaterialApp(
-      home: OrdersScreen(
-        orders: [],
-      ),
-    ),
-  );
-}
-
-class Order {
-  final int id;
-  final bool isPaid;
-  final DateTime? date;
-
-  Order({
-    required this.id,
-    required this.isPaid,
-    this.date,
-  });
-}
-
 class OrdersScreen extends StatefulWidget {
-  const OrdersScreen({super.key, required this.orders});
-  final List<Order> orders;
+  const OrdersScreen({
+    super.key,
+  });
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  final List<Order> _trackedOrders = [
-    Order(id: 1, isPaid: true),
-    Order(id: 2, isPaid: false),
-    Order(id: 3, isPaid: true),
-  ];
-  final List<Order> _orderHistory = [
-    Order(id: 1, isPaid: true, date: DateTime(2023, 4, 25)),
-    Order(id: 2, isPaid: false, date: DateTime(2024, 4, 20)),
-    Order(id: 3, isPaid: true, date: DateTime(2023, 4, 15)),
+  final List<OrderWidget> order = [
+    OrderWidget(
+        order: OrderLocalModel(
+      code: "SUCCESS",
+      transactionId: 0,
+      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
+      sbpMerchantId: "MA622976",
+      merchantId: 3003157001,
+      amount: 100,
+      currency: "RUB",
+      paymentStatus: "SUCCESS",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2023-04-26T15:18:11.566125+03:00"),
+    )),
+    OrderWidget(
+        order: OrderLocalModel(
+      code: "SUCCESS",
+      transactionId: 0,
+      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
+      sbpMerchantId: "MA622976",
+      merchantId: 3003157001,
+      amount: 100,
+      currency: "RUB",
+      paymentStatus: "SUCCES",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2024-04-26T15:18:11.566125+03:00"),
+    )),
+    OrderWidget(
+        order: OrderLocalModel(
+      code: "SUCCESS",
+      transactionId: 0,
+      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
+      sbpMerchantId: "MA622976",
+      merchantId: 3003157001,
+      amount: 100,
+      currency: "RUB",
+      paymentStatus: "SUCCESS",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2022-04-26T15:18:11.566125+03:00"),
+    ))
   ];
 
   String _sortOrder = 'По убыванию';
@@ -52,18 +60,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   void initState() {
     super.initState();
-    _orderHistory.sort(
-      (a, b) => (b.date ?? DateTime.now()).compareTo(
-        a.date ?? DateTime.now(),
+    order.sort(
+      (a, b) => (b.order.createDate).compareTo(
+        a.order.createDate,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    // return BlocConsumer<OrdersBloc, OrdersState>(
-    //   bloc: getIt(),
-    //   builder: (context, state) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -88,12 +93,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     setState(() {
                       _sortOrder = value!;
                       _sortOrder == 'По убыванию'
-                          ? _orderHistory.sort((a, b) =>
-                              (b.date ?? DateTime.now())
-                                  .compareTo(a.date ?? DateTime.now()))
-                          : _orderHistory.sort((a, b) =>
-                              (a.date ?? DateTime.now())
-                                  .compareTo(b.date ?? DateTime.now()));
+                          ? order.sort((a, b) => (b.order.createDate)
+                              .compareTo(a.order.createDate))
+                          : order.sort((a, b) => (a.order.createDate)
+                              .compareTo(b.order.createDate));
                     });
                   },
                 ),
@@ -123,15 +126,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       const SliverToBoxAdapter(
                         child: SizedBox(height: 20),
                       ),
-                      SliverToBoxAdapter(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: _trackedOrders.length,
-                          itemBuilder: (context, index) {
-                            return OrderWidget(
-                              order: _trackedOrders[index],
-                            );
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return order[index];
                           },
+                          childCount: order.length,
                         ),
                       ),
                       const SliverToBoxAdapter(
@@ -147,9 +147,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
-                            return OrderWidget(order: _orderHistory[index]);
+                            return order[index];
                           },
-                          childCount: _orderHistory.length,
+                          childCount: order.length,
                         ),
                       ),
                       const SliverToBoxAdapter(
@@ -164,154 +164,5 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
       ),
     );
-    //   },
-    //   listener: (BuildContext context, OrdersState state) {},
-    // );
   }
 }
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:order_status/app/app.dart';
-// import 'package:order_status/bloc/orders/orders_bloc.dart';
-// import 'package:order_status/features/orders/widgets/order_widget.dart';
-
-// void main() {
-//   runApp(
-//     const MaterialApp(
-//       home: OrdersScreen(
-//         orders: [],
-//       ),
-//     ),
-//   );
-// }
-
-// class Order {
-//   final int id;
-//   final bool isPaid;
-//   final DateTime? date;
-
-//   Order({
-//     required this.id,
-//     required this.isPaid,
-//     this.date,
-//   });
-// }
-
-// class OrdersScreen extends StatefulWidget {
-//   const OrdersScreen({super.key, required this.orders});
-//   final List<Order> orders;
-
-//   @override
-//   State<OrdersScreen> createState() => _OrdersScreenState();
-// }
-
-// class _OrdersScreenState extends State<OrdersScreen> {
-//   final List<Order> _trackedOrders = [
-//     Order(id: 1, isPaid: true),
-//     Order(id: 2, isPaid: false),
-//     Order(id: 3, isPaid: true),
-//   ];
-//   final List<Order> _orderHistory = [
-//     Order(id: 1, isPaid: true, date: DateTime(2023, 4, 25)),
-//     Order(id: 2, isPaid: false, date: DateTime(2024, 4, 20)),
-//     Order(id: 3, isPaid: true, date: DateTime(2023, 4, 15)),
-//   ];
-//   @override
-//   void initState() {
-//     super.initState();
-//     // Сортируем заказы по дате в порядке убывания
-//     _orderHistory.sort((a, b) =>
-//         (b.date ?? DateTime.now()).compareTo(a.date ?? DateTime.now()));
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocConsumer<OrdersBloc, OrdersState>(
-//       bloc: getIt(),
-//       builder: (context, state) {
-//         return Scaffold(
-//           appBar: AppBar(
-//             title: const Text(
-//               'История заказов',
-//               style: TextStyle(
-//                 fontWeight: FontWeight.bold,
-//                 fontSize: 30,
-//               ),
-//             ),
-//           ),
-//           body: DefaultTabController(
-//             length: 3,
-//             child: Column(
-//               children: [
-//                 const TabBar(
-//                   tabs: [
-//                     Tab(text: 'Отслеживаемые'),
-//                     Tab(text: 'История поиска'),
-//                   ],
-//                 ),
-//                 Expanded(
-//                   child: TabBarView(
-//                     children: [
-//                       _buildOrdersList(_trackedOrders),
-//                       _buildOrdersList(_orderHistory),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//       listener: (BuildContext context, OrdersState state) {},
-//     );
-//   }
-
-//   Widget _buildOrdersList(List<Order> orders) {
-//     return ListView.builder(
-//       itemCount: orders.length,
-//       itemBuilder: (context, index) {
-//         return OrderWidget(
-//           order: orders[index], orderRemoteModel: state,
-//         );
-//       },
-//     );
-//   }
-// }
-
-
-
-//111111111111111111111111111111111111
-
-
-// class OrdersScreene extends StatelessWidget {
-//   const OrdersScreene({required this.orders, super.key});
-
-//   final List<Order> orders;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text(
-//           'История заказов',
-//           style: TextStyle(
-//             fontWeight: FontWeight.bold,
-//             fontSize: 40,
-//           ),
-//         ),
-//       ),
-//       body: ListView.builder(
-//         itemCount: orders.length,
-//         itemBuilder: (context, index) {
-//           return ListTile(
-//             title: Text(orders[index].title),
-//             subtitle: Text(orders[index].isPaid ? 'Оплачен' : 'Не оплачен'),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
