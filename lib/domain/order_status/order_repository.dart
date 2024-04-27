@@ -11,7 +11,17 @@ class OrderRepository {
     required this.ordersLDS,
   });
   OrderRDS orderRDS;
+
   OrdersLDS ordersLDS;
+
+  Future<List<OrderLocalModel>> getSavedOrders() async {
+    final orders = ordersLDS.getOrders();
+
+    if (orders == null) return [];
+
+    List<OrderLocalModel> savedOrders = orders.map((e) => OrderLocalModel.fromJson(jsonDecode(e))).toList();
+    return savedOrders;
+  }
 
   Future<OrderLocalModel> getOrderStatusById(String qrId) async {
     try {

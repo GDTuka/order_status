@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:order_status/app/app.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
+import 'package:order_status/domain/order_status/order_repository.dart';
 import 'package:order_status/features/orders/widgets/order_widget.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -12,38 +14,32 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
-  final List<OrderWidget> order = [
-    OrderWidget(
-        order: OrderLocalModel(
-      paymentStatus: "SUCCESS",
-      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
-      createDate: DateTime.parse("2023-04-26T15:18:11.566125+03:00"),
-    )),
-    OrderWidget(
-        order: OrderLocalModel(
-      paymentStatus: "SUCCES",
-      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
-      createDate: DateTime.parse("2024-04-26T15:18:11.566125+03:00"),
-    )),
-    OrderWidget(
-        order: OrderLocalModel(
-      paymentStatus: "SUCCESS",
-      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
-      createDate: DateTime.parse("2022-04-26T15:18:11.566125+03:00"),
-    ))
-  ];
+  bool isLoading = false;
 
-  String _sortOrder = 'По убыванию';
+  List<OrderLocalModel> orders = [];
+
+  final String _sortOrder = 'По убыванию';
+
   int _currentTabIndex = 0;
+
+  Future<void> getOrders() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final savedOrders = await getIt<OrderRepository>().getSavedOrders();
+
+    setState(() {
+      orders = savedOrders;
+      isLoading = false;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    order.sort(
-      (a, b) => (b.order.createDate).compareTo(
-        a.order.createDate,
-      ),
-    );
+
+    getOrders();
   }
 
   @override
@@ -68,12 +64,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     );
                   }).toList(),
                   onChanged: (String? value) {
-                    setState(() {
-                      _sortOrder = value!;
-                      _sortOrder == 'По убыванию'
-                          ? order.sort((a, b) => (b.order.createDate).compareTo(a.order.createDate))
-                          : order.sort((a, b) => (a.order.createDate).compareTo(b.order.createDate));
-                    });
+                    // setState(() {
+                    //   _sortOrder = value!;
+                    //   _sortOrder == 'По убыванию'
+                    //       ? order.sort((a, b) => (b.order.createDate).compareTo(a.order.createDate))
+                    //       : order.sort((a, b) => (a.order.createDate).compareTo(b.order.createDate));
+                    // });
                   },
                 ),
               ]
@@ -97,38 +93,43 @@ class _OrdersScreenState extends State<OrdersScreen> {
             Expanded(
               child: TabBarView(
                 children: [
-                  CustomScrollView(
-                    slivers: [
-                      const SliverToBoxAdapter(
-                        child: SizedBox(height: 20),
-                      ),
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return order[index];
-                          },
-                          childCount: order.length,
+                  if (isLoading)
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  else
+                    const CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: SizedBox(height: 20),
                         ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: SizedBox(height: 20),
-                      ),
-                    ],
-                  ),
-                  CustomScrollView(
-                    slivers: [
-                      const SliverToBoxAdapter(
-                        child: SizedBox(height: 20),
-                      ),
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return order[index];
-                          },
-                          childCount: order.length,
+                        // SliverList(
+                        //   delegate: SliverChildBuilderDelegate(
+                        //     (context, index) {
+                        //       return order[index];
+                        //     },
+                        //     childCount: order.length,
+                        //   ),
+                        // ),
+                        SliverToBoxAdapter(
+                          child: SizedBox(height: 20),
                         ),
+                      ],
+                    ),
+                  const CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: SizedBox(height: 20),
                       ),
-                      const SliverToBoxAdapter(
+                      // SliverList(
+                      //   delegate: SliverChildBuilderDelegate(
+                      //     (context, index) {
+                      //       return order[index];
+                      //     },
+                      //     childCount: order.length,
+                      //   ),
+                      // ),
+                      SliverToBoxAdapter(
                         child: SizedBox(height: 20),
                       ),
                     ],
