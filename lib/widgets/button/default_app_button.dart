@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DefaultAppButton extends StatelessWidget {
-  const DefaultAppButton({super.key, required this.onTap, required this.content});
+  const DefaultAppButton(
+      {super.key, required this.onTap, required this.content});
 
   final VoidCallback onTap;
 

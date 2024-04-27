@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
 import 'package:order_status/features/auth/auth_screen.dart';
+import 'package:order_status/features/auth/opening_screen.dart';
 import 'package:order_status/features/stats/stats_screen.dart';
 import 'package:order_status/navigation/navigation_screen.dart';
 
@@ -60,6 +61,7 @@ class _AppState extends State<App> {
         '/navigation': (context) => const NavigationScreen(),
         '/stats': (context) => const StatsScreen(),
         '/auth': (context) => AuthScreen(),
+        '/opening': (context) => const OpeningScreen(),
       },
       initialRoute: getIt<AuthRepository>().isAuth ? '/navigation' : '/auth',
     );
