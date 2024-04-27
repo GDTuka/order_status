@@ -14,6 +14,14 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
+const primaryColor = Color(0xffFFE500);
+const secondaryColor = Color(0xffB0BFD5);
+const backgroundColor = Color(0xff1E1C1D);
+const accentColor = Color(0xff6860A8);
+const lightColor = Color(0xffE7F2E4);
+const darkColor = Color(0xffEFE4E4);
+const errorColor = Color(0xffAB4141);
+
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
@@ -21,8 +29,23 @@ class _AppState extends State<App> {
       title: 'Order_Status',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          primary: primaryColor,
+          secondary: secondaryColor,
+          error: errorColor,
+          onPrimary: Colors.black,
+          onSecondary: Colors.white,
+          onBackground: Colors.white,
+          onError: Colors.white,
+        ),
         useMaterial3: true,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primaryColor,
+            foregroundColor: Colors.white,
+          ),
+        ),
       ),
       builder: (context, child) {
         if (child == null) return Container();
@@ -38,8 +61,7 @@ class _AppState extends State<App> {
         '/stats': (context) => const StatsScreen(),
         '/auth': (context) => AuthScreen(),
       },
-      initialRoute:
-          getIt<AuthRepository>().isAuth ? '/navigation' : '/navigation',
+      initialRoute: getIt<AuthRepository>().isAuth ? '/navigation' : '/auth',
     );
   }
 }
