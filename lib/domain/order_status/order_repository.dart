@@ -10,6 +10,8 @@ class OrderRepository {
   Future<OrderLocalModel> getOrderStatusById(String qrId) async {
     final res = await orderRDS.getOrderStatusById(qrId);
 
+    // Сохранить новый заказ локально
+
     return res.toLocal();
   }
 
