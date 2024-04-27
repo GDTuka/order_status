@@ -67,7 +67,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
       onTap: _setActiveIndex,
       currentIndex: _activeIndex,
       items: const [
-        //TODO() Добавить нормальные иконки
         BottomNavigationBarItem(
             icon: Icon(Icons.search), label: 'Новые заказы'),
         BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Все заказы'),
