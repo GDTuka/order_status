@@ -15,39 +15,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
   final List<OrderWidget> order = [
     OrderWidget(
         order: OrderLocalModel(
-      code: "SUCCESS",
-      transactionId: 0,
-      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
-      sbpMerchantId: "MA622976",
-      merchantId: 3003157001,
-      amount: 100,
-      currency: "RUB",
       paymentStatus: "SUCCESS",
       order: "fcf1cd80-62bd-1f94-80fb-292677056444",
       createDate: DateTime.parse("2023-04-26T15:18:11.566125+03:00"),
     )),
     OrderWidget(
         order: OrderLocalModel(
-      code: "SUCCESS",
-      transactionId: 0,
-      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
-      sbpMerchantId: "MA622976",
-      merchantId: 3003157001,
-      amount: 100,
-      currency: "RUB",
       paymentStatus: "SUCCES",
       order: "fcf1cd80-62bd-1f94-80fb-292677056444",
       createDate: DateTime.parse("2024-04-26T15:18:11.566125+03:00"),
     )),
     OrderWidget(
         order: OrderLocalModel(
-      code: "SUCCESS",
-      transactionId: 0,
-      qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
-      sbpMerchantId: "MA622976",
-      merchantId: 3003157001,
-      amount: 100,
-      currency: "RUB",
       paymentStatus: "SUCCESS",
       order: "fcf1cd80-62bd-1f94-80fb-292677056444",
       createDate: DateTime.parse("2022-04-26T15:18:11.566125+03:00"),
@@ -82,8 +61,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ? [
                 DropdownButton<String>(
                   value: _sortOrder,
-                  items: <String>['По убыванию', 'По возрастанию']
-                      .map((String value) {
+                  items: <String>['По убыванию', 'По возрастанию'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -93,10 +71,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     setState(() {
                       _sortOrder = value!;
                       _sortOrder == 'По убыванию'
-                          ? order.sort((a, b) => (b.order.createDate)
-                              .compareTo(a.order.createDate))
-                          : order.sort((a, b) => (a.order.createDate)
-                              .compareTo(b.order.createDate));
+                          ? order.sort((a, b) => (b.order.createDate).compareTo(a.order.createDate))
+                          : order.sort((a, b) => (a.order.createDate).compareTo(b.order.createDate));
                     });
                   },
                 ),
