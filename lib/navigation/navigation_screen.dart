@@ -24,7 +24,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   List<Widget> screens = [
     const NewOrderScreen(),
-    const OrdersScreen(),
+    const OrdersScreen(
+      orders: [],
+    ),
     AdminScreen(),
   ];
 
@@ -34,12 +36,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
     overlayState = Overlay.of(context);
 
-    getIt<OverlayBloc>().stream.listen((event) => _overlayListener(context, event));
+    getIt<OverlayBloc>()
+        .stream
+        .listen((event) => _overlayListener(context, event));
 
     super.initState();
   }
 
-  Future<void> _overlayListener(BuildContext context, OverlayBlocState state) async {
+  Future<void> _overlayListener(
+      BuildContext context, OverlayBlocState state) async {
     if (state is ShowNotificationState) {
       final entry = OverlayEntry(
         builder: (context) {
@@ -66,8 +71,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
       items: const [
         //TODO() Добавить нормальные иконки
         BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Новые заказы'),
-        BottomNavigationBarItem(icon: Icon(Icons.abc_outlined), label: 'Все заказы'),
-        BottomNavigationBarItem(icon: Icon(Icons.abc_rounded), label: 'Админка'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.abc_outlined), label: 'Все заказы'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.abc_rounded), label: 'Админка'),
       ],
     );
   }
