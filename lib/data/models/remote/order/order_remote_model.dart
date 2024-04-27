@@ -40,6 +40,21 @@ class OrderRemoteModel {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'code': code,
+      'transactionId': transactionId,
+      'qrId': qrId,
+      'sbpMerchantId': sbpMerchantId,
+      'merchantId': merchantId,
+      'amount': amount,
+      'currency': currency,
+      'paymentStatus': paymentStatus,
+      'order': order,
+      'createDate': createDate.toIso8601String(),
+    };
+  }
+
   OrderLocalModel toLocal() {
     return OrderLocalModel(
       code: code,

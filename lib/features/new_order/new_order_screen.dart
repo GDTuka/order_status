@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:order_status/bloc/search_orders/search_bloc.dart';
+import 'package:order_status/app/app.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
 import 'package:order_status/domain/order_status/order_repository.dart';
 import 'package:order_status/features/orders/widgets/order_widget.dart';
+import 'package:order_status/widgets/button/default_app_button.dart';
 
 class NewOrderScreen extends StatefulWidget {
   const NewOrderScreen({super.key});
@@ -15,45 +15,66 @@ class NewOrderScreen extends StatefulWidget {
 class _NewOrderScreenState extends State<NewOrderScreen> {
   bool value = false;
 
+  String? errorText;
+
+  OrderLocalModel? orderModel;
+
+  TextEditingController controller = TextEditingController();
+
+  Future<void> getStatus() async {
+    try {
+      final res = await getIt<OrderRepository>().getOrderStatusById(controller.text);
+
+      setState(() {
+        orderModel = res;
+      });
+
+      errorText = null;
+    } on Exception catch (e) {
+      errorText = (e as FormatException).message;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
+              if (errorText != null) ...[
+                Text(
+                  errorText!,
+                  style: const TextStyle(color: Colors.red),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
               const Text(
                 'Поиск заказа',
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
               ),
               TextFormField(
                 controller: controller,
-                onChanged: (value) {
-                  context.read<SearchBloc>().add(SearchOrderEvent(value));
-                },
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Введите номер заказа'),
+                decoration: const InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'Введите номер заказа'),
               ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: OrderWidget(
-                    order: OrderLocalModel(
-                  code: "SUCCESS",
-                  transactionId: 0,
-                  qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
-                  sbpMerchantId: "MA622976",
-                  merchantId: 3003157001,
-                  amount: 100,
-                  currency: "RUB",
-                  paymentStatus: "SUCCESS",
-                  order: "fcf1cd80-62bd-1f94-80fb-292677056444",
-                  createDate:
-                      DateTime.parse("2024-04-26T15:18:11.566125+03:00"),
-                )),
-              )
+              DefaultAppButton(
+                onTap: () {
+                  getStatus();
+                },
+                content: const Text('Получить информацию о заказе'),
+              ),
+              const SizedBox(height: 20),
+              if (orderModel != null)
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: OrderWidget(
+                    order: orderModel!,
+                  ),
+                )
             ],
           ),
         ),

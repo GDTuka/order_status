@@ -8,6 +8,7 @@ import 'package:order_status/bloc/orders/orders_bloc.dart';
 import 'package:order_status/bloc/overlay_bloc/overlay_bloc.dart';
 import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/data/lds/auth/auth_lds.dart';
+import 'package:order_status/data/lds/orders/orders_lds.dart';
 import 'package:order_status/data/rds/order_rds/order_rds.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
@@ -44,6 +45,8 @@ Future<void> _registerDependencies() async {
 
   getIt.registerSingleton<UserRDS>(UserRDS(db: getIt()));
 
+  getIt.registerSingleton<OrdersLDS>(OrdersLDS(prefs: shared));
+
   getIt.registerSingleton<AuthLDS>(AuthLDS(prefs: shared));
 
   getIt.registerSingleton<UserRepository>(UserRepository(userRDS: getIt(), authLDS: getIt()));
@@ -60,7 +63,7 @@ Future<void> _registerDependencies() async {
 
   getIt.registerSingleton<OrderRDS>(OrderRDS(dio: getIt()));
 
-  getIt.registerSingleton<OrderRepository>(OrderRepository(orderRDS: getIt()));
+  getIt.registerSingleton<OrderRepository>(OrderRepository(orderRDS: getIt(), ordersLDS: getIt()));
 
   await getIt<OrderRepository>().devCreteQRWithcode();
 
