@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:order_status/bloc/search_orders/search_bloc.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
-import 'package:order_status/domain/order_status/order_repository.dart';
 import 'package:order_status/features/orders/widgets/order_widget.dart';
 
 class NewOrderScreen extends StatefulWidget {
@@ -41,13 +40,6 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: OrderWidget(
                     order: OrderLocalModel(
-                  code: "SUCCESS",
-                  transactionId: 0,
-                  qrId: "AD9C2D8340F84EF59112A0BF30B3710E",
-                  sbpMerchantId: "MA622976",
-                  merchantId: 3003157001,
-                  amount: 100,
-                  currency: "RUB",
                   paymentStatus: "SUCCESS",
                   order: "fcf1cd80-62bd-1f94-80fb-292677056444",
                   createDate:

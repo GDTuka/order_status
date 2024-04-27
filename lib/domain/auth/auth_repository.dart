@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:order_status/data/lds/auth/auth_lds.dart';
 import 'package:order_status/data/models/remote/user/user_remote_model.dart';
 import 'package:order_status/data/rds/user_rds/user_rds.dart';
-import 'package:uuid/uuid.dart';
 
 class AuthRepository {
   AuthRepository({
