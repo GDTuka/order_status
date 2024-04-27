@@ -1,3 +1,5 @@
+import 'package:order_status/data/models/local/order/order_local_model.dart';
+
 class OrderRemoteModel {
   final String code;
   final int transactionId;
@@ -37,4 +39,6 @@ class OrderRemoteModel {
       createDate: DateTime.parse(json['createDate']),
     );
   }
+
+  OrderLocalModel toLocal() => OrderLocalModel();
 }
