@@ -23,6 +23,7 @@ dependencies:
   cloud_firestore: ^4.17.2
   uuid: ^4.4.0
   firebase_auth: ^4.19.4
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,11 @@ dev_dependencies:
   freezed: ^2.5.2
   flutter_lints: ^3.0.0
   build_runner: ^2.4.9
-
+  
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/logo.png"
 
 flutter:
   uses-material-design: true
