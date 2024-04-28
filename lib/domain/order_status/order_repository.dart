@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:order_status/data/lds/orders/orders_lds.dart';
 import 'package:order_status/data/models/local/order/order_local_model.dart';
+import 'package:order_status/data/models/remote/order/order_remote_model.dart';
 import 'package:order_status/data/rds/order_rds/order_rds.dart';
 
 class OrderRepository {
@@ -14,11 +15,7 @@ class OrderRepository {
   OrdersLDS ordersLDS;
 
   Future<List<OrderLocalModel>> getSavedOrders() async {
-    // OrderRemoteModel temp = OrderRemoteModel(
-    //   paymentStatus: 'SUCCESS',
-    //   order: 'AD9C2D8340F84EF59112A0BF30B3710E',
-    //   createDate: DateTime.now(),
-    // );
+    
     final orders = ordersLDS.getOrders();
 
     if (orders == null) return [];
@@ -29,6 +26,11 @@ class OrderRepository {
   }
 
   Future<OrderLocalModel> getOrderStatusById(String qrId) async {
+    OrderRemoteModel temp = OrderRemoteModel(
+      paymentStatus: 'SUCCESS',
+      order: 'AD9C2D8340F84EF59112A0BF30B3710E',
+      createDate: DateTime.now(),
+    );
     try {
       final res = await orderRDS.getOrderStatusById(qrId);
 

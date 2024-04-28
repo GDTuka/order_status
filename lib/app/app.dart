@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:order_status/domain/auth/auth_repository.dart';
 import 'package:order_status/features/auth/auth_screen.dart';
+import 'package:order_status/features/auth/auth_windows_screen.dart';
 import 'package:order_status/features/auth/opening_screen.dart';
 import 'package:order_status/features/stats/stats_screen.dart';
 import 'package:order_status/navigation/navigation_screen.dart';
@@ -72,11 +73,16 @@ class _AppState extends State<App> {
               '/navigation_windows': (context) =>
                   const NavigationWindowsScreen(),
               '/stats_windows': (context) => const StatsScreen(),
-              '/auth_windows': (context) => AuthScreen(),
+              '/auth_windows': (context) => AuthWindowsScreen(),
               '/opening_windows': (context) => const OpeningScreen(),
             },
-      initialRoute:
-          getIt<AuthRepository>().isAuth ? '/navigation' : '/navigation_windows',
+      initialRoute: Platform.isAndroid 
+          ? getIt<AuthRepository>().isAuth
+              ? '/navigation'
+              : '/navigation'
+          : getIt<AuthRepository>().isAuth 
+              ? '/navigation_windows'
+              : '/auth_windows',
     );
   }
 }

@@ -16,6 +16,7 @@ class DefaultAppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: 45,
       child: ElevatedButton(
         onPressed: onTap,
         child: content,
