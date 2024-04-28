@@ -1,33 +1,38 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:order_status/app/app.dart';
 import 'package:order_status/bloc/overlay_bloc/overlay_bloc.dart';
 import 'package:order_status/bloc/overlay_bloc/overlay_state.dart';
 import 'package:order_status/bloc/user/user_bloc.dart';
 import 'package:order_status/features/admin/admin_screen.dart';
+import 'package:order_status/features/admin/admin_windows_screen.dart';
 import 'package:order_status/features/new_order/new_order_screen.dart';
 import 'package:order_status/features/new_order/new_order_windows_screen.dart';
 import 'package:order_status/features/orders/orders_screen.dart';
+import 'package:order_status/features/orders/orders_windows_screen.dart';
 import 'package:order_status/widgets/overlay/notification_widget.dart';
 
-class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+class NavigationWindowsScreen extends StatefulWidget {
+  const NavigationWindowsScreen({super.key});
 
   @override
-  State<NavigationScreen> createState() => _NavigationScreenState();
+  State<NavigationWindowsScreen> createState() =>
+      _NavigationWindowsScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _NavigationWindowsScreenState extends State<NavigationWindowsScreen> {
   int _activeIndex = 0;
 
   late final OverlayState overlayState;
 
   List<Widget> screens = [
-    const NewOrderScreen(),
-    const OrdersScreen(),
-    AdminScreen(),
+    const NewOrderWindowsScreen(),
+    const OrdersWindowsScreen(),
+    const AdmingWindowsScreen()
   ];
 
   @override
@@ -86,9 +91,52 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
-      body: screens[_activeIndex],
-      bottomNavigationBar: _buildBottomNavBar(),
-    );
+        body: DefaultTabController(
+      length: 3,
+      child: Column(
+        children: [
+          Container(
+            width: mediaQuerySize.width * 0.6,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                    offset: Offset(0, 4))
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Icon(Icons.logo_dev),
+                Align(
+                  child: TabBar(
+                    onTap: _setActiveIndex,
+                    isScrollable: true,
+                    tabAlignment: TabAlignment.center,
+                    labelColor: Theme.of(context).colorScheme.onSecondary,
+                    tabs: const [
+                      Tab(icon: Icon(Icons.search)),
+                      Tab(icon: Icon(Icons.history)),
+                      Tab(icon: Icon(Icons.admin_panel_settings)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          Expanded(
+            child: TabBarView(children: screens),
+          ),
+        ],
+      ),
+    ));
   }
 }
