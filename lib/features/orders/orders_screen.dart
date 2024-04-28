@@ -53,7 +53,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             fontSize: 20,
           ),
         ),
-        actions: _currentTabIndex == 1
+        actions: _currentTabIndex == 0
             ? [
                 DropdownButton<String>(
                   value: _sortOrder,
@@ -89,8 +89,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 });
               },
               tabs: const [
-                Tab(text: 'Отслеживаемые'),
                 Tab(text: 'История поиска'),
+                Tab(text: 'Отслеживаемые'),
               ],
             ),
             Expanded(
