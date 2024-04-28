@@ -65,12 +65,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     );
                   }).toList(),
                   onChanged: (String? value) {
-                    // setState(() {
-                    //   _sortOrder = value!;
-                    //   _sortOrder == 'По убыванию'
-                    //       ? order.sort((a, b) => (b.order.createDate).compareTo(a.order.createDate))
-                    //       : order.sort((a, b) => (a.order.createDate).compareTo(b.order.createDate));
-                    // });
+                    setState(() {
+                      // _sortOrder = value!;
+                      _sortOrder == 'По убыванию'
+                          ? orders.sort(
+                              (a, b) => (b.createDate).compareTo(a.createDate))
+                          : orders.sort(
+                              (a, b) => (a.createDate).compareTo(b.createDate));
+                    });
                   },
                 ),
               ]
@@ -99,20 +101,20 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       child: CircularProgressIndicator(),
                     )
                   else
-                    const CustomScrollView(
+                    CustomScrollView(
                       slivers: [
-                        SliverToBoxAdapter(
+                        const SliverToBoxAdapter(
                           child: SizedBox(height: 20),
                         ),
-                        // SliverList(
-                        //   delegate: SliverChildBuilderDelegate(
-                        //     (context, index) {
-                        //       return order[index];
-                        //     },
-                        //     childCount: order.length,
-                        //   ),
-                        // ),
-                        SliverToBoxAdapter(
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              return OrderWidget(order: orders[index]);
+                            },
+                            childCount: orders.length,
+                          ),
+                        ),
+                        const SliverToBoxAdapter(
                           child: SizedBox(height: 20),
                         ),
                       ],

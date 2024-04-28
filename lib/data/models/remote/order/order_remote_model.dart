@@ -14,7 +14,7 @@ class OrderRemoteModel {
   factory OrderRemoteModel.fromJson(Map<String, dynamic> json) {
     return OrderRemoteModel(
       paymentStatus: json['paymentStatus'],
-      order: json['qrID'],
+      order: json['qrId'],
       createDate: DateTime.parse(json['createDate']),
     );
   }
@@ -22,7 +22,7 @@ class OrderRemoteModel {
   Map<String, dynamic> toJson() {
     return {
       'paymentStatus': paymentStatus,
-      'qrID': order,
+      'qrId': order,
       'createDate': createDate.toIso8601String(),
     };
   }

@@ -11,7 +11,7 @@ class OrderLocalModel {
 
   Map<String, dynamic> toJson() => {
         'paymentStatus': paymentStatus,
-        'qrID': order,
+        'qrId': order,
         'createDate': createDate.toIso8601String(),
       };
 
