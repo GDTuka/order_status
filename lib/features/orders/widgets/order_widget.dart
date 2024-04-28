@@ -21,7 +21,7 @@ class OrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool paymentStatus = order.paymentStatus == "SUCCESS";
     return Padding(
-      padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
+      padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
       child: Column(
         children: [
           Row(
@@ -40,7 +40,7 @@ class OrderWidget extends StatelessWidget {
             color: paymentStatus ? Colors.green : Colors.red,
             elevation: 6,
             child: Padding(
-              padding: const EdgeInsets.all(40),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +68,7 @@ class OrderWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 16),
                         Text(
-                          paymentStatus ? 'Оплачен' : 'Не оплачен',
+                          order.paymentStatus, //? 'Оплачен' : 'Не оплачен',
                           style: TextStyle(
                             color: paymentStatus ? Colors.green : Colors.red,
                             fontWeight: FontWeight.bold,
@@ -94,15 +94,18 @@ class OrderWidget extends StatelessWidget {
                         children: [
                           Text(
                             'Номер заказа:',
+                            maxLines: 2,
+                            softWrap: true,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               color: paymentStatus ? Colors.green : Colors.red,
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(width: 6),
                           Text(
                             order.order,
+                            maxLines: 2,
                             style: TextStyle(
                               color: paymentStatus ? Colors.green : Colors.red,
                               fontWeight: FontWeight.bold,
