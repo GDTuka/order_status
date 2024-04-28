@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OpeningScreen extends StatefulWidget {
   const OpeningScreen({super.key});
@@ -14,7 +12,7 @@ class _OpeningScreenState extends State<OpeningScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-         Navigator.of(context).pushReplacementNamed('/auth');
+      Navigator.of(context).pushReplacementNamed('/auth');
     });
   }
 
