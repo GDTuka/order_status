@@ -18,7 +18,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   List<OrderLocalModel> orders = [];
 
-  final String _sortOrder = 'По убыванию';
+  String _sortOrder = 'По убыванию';
 
   int _currentTabIndex = 0;
 
@@ -66,7 +66,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   }).toList(),
                   onChanged: (String? value) {
                     setState(() {
-                      // _sortOrder = value!;
+                      _sortOrder = value!;
                       _sortOrder == 'По убыванию'
                           ? orders.sort(
                               (a, b) => (b.createDate).compareTo(a.createDate))
