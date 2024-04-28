@@ -22,9 +22,8 @@ class UserWidget extends StatelessWidget {
     /// Удалить
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.inversePrimary,
-      ),
+          borderRadius: BorderRadius.circular(8),
+          color: const Color(0xFFE7F2E4)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
@@ -32,7 +31,9 @@ class UserWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Имя:${userRemoteModel.name}'),
+                Text(
+                  'Имя:${userRemoteModel.name}',
+                ),
                 Text('Фамилия:${userRemoteModel.surname}'),
                 Text('Отчество:${userRemoteModel.thirdName}'),
               ],
