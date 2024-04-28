@@ -29,7 +29,8 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         isLoading = true;
       });
 
-      final res = await getIt<OrderRepository>().getOrderStatusById(controller.text);
+      final res =
+          await getIt<OrderRepository>().getOrderStatusById(controller.text);
 
       setState(() {
         orderModel = res;
@@ -52,7 +53,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: Column(
                   children: [
                     if (errorText != null) ...[
@@ -66,12 +67,14 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                     ],
                     const Text(
                       'Поиск заказа',
-                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
                     ),
                     TextFormField(
                       controller: controller,
-                      decoration:
-                          const InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'Введите номер заказа'),
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          hintText: 'Введите номер заказа'),
                     ),
                     DefaultAppButton(
                       onTap: getStatus,
