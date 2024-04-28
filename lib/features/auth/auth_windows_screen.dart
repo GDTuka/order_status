@@ -22,22 +22,6 @@ class AuthWindowsScreen extends StatelessWidget {
       builder: (context, state) {
         // Нормально не делаю из принциа и того сколько есть времени
         return Scaffold(
-          appBar: AppBar(),
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DefaultAppButton(
-              width: mediaQuerySize.width,
-              content: const Text('Авторизоваться'),
-              onTap: () => getIt<UserBloc>().add(UserEvents.login(
-                _authIdController.text,
-                _adminController.text,
-                state.tryAdminAuth,
-                context,
-              )),
-            ),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Stack(
@@ -47,8 +31,8 @@ class AuthWindowsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        width: double.infinity,
+                       SizedBox(
+                        width: mediaQuerySize.width * 0.6,
                         child: Text(
                           'Авторизуйтесь используя код авторизации',
                           style: TextStyle(
@@ -69,7 +53,7 @@ class AuthWindowsScreen extends StatelessWidget {
                         ),
                       const SizedBox(height: 16),
                       SizedBox(
-                        width: mediaQuerySize.width,
+                        width: mediaQuerySize.width * 0.6,
                         child: TextFormField(
                           controller: _adminController,
                           autofocus: true,
@@ -81,7 +65,7 @@ class AuthWindowsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       SizedBox(
-                        width: mediaQuerySize.width,
+                        width: mediaQuerySize.width * 0.6,
                         child: TextFormField(
                           controller: _authIdController,
                           autofocus: true,
@@ -93,7 +77,7 @@ class AuthWindowsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       SizedBox(
-                        width: mediaQuerySize.width,
+                        width: mediaQuerySize.width * 0.6,
                         child: Row(
                           children: [
                             Checkbox(
@@ -104,7 +88,18 @@ class AuthWindowsScreen extends StatelessWidget {
                             const Flexible(child: Text('Войти как админ'))
                           ],
                         ),
-                      )
+                      ),
+                      SizedBox(height: 20),
+                      DefaultAppButton(
+                        width: mediaQuerySize.width * 0.6,
+                        content: const Text('Авторизоваться'),
+                        onTap: () => getIt<UserBloc>().add(UserEvents.login(
+                          _authIdController.text,
+                          _adminController.text,
+                          state.tryAdminAuth,
+                          context,
+                        )),
+                      ),
                     ],
                   ),
                 ),

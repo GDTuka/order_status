@@ -10,6 +10,7 @@ class UserForm extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final Size mediaQuerySize = MediaQuery.of(context).size * 0.5;
     return BlocConsumer<UserBloc, UserState>(
       bloc: getIt(),
       builder: (context, state) {
@@ -21,8 +22,10 @@ class UserForm extends StatelessWidget {
           },
           child: AnimatedContainer(
             curve: Curves.easeIn,
-            height: state.showAddNewUserForm ? 424 : 45,
-            width: double.infinity,
+            height: state.showAddNewUserForm
+                ? mediaQuerySize.height * 0.85
+                : mediaQuerySize.height * 0.2,
+            width: mediaQuerySize.width * 0.8,
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -36,7 +39,7 @@ class UserForm extends StatelessWidget {
                     child: Column(
                       children: [
                         const Text('Добавление пользователя'),
-                        const SizedBox(height: 20),
+                        SizedBox(height: mediaQuerySize.height * 0.03),
                         TextFormField(
                           controller:
                               getIt<UserBloc>().adminNewUserNameController,
@@ -47,7 +50,7 @@ class UserForm extends StatelessWidget {
                           keyboardType: TextInputType.name,
                           textInputAction: TextInputAction.next,
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: mediaQuerySize.height * 0.03),
                         TextFormField(
                           controller:
                               getIt<UserBloc>().adminNewUserSurnameController,
@@ -58,7 +61,7 @@ class UserForm extends StatelessWidget {
                           keyboardType: TextInputType.name,
                           textInputAction: TextInputAction.next,
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: mediaQuerySize.height * 0.03),
                         TextFormField(
                           controller:
                               getIt<UserBloc>().adminNewUserThirdNameController,
@@ -69,7 +72,7 @@ class UserForm extends StatelessWidget {
                           ),
                           textInputAction: TextInputAction.done,
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(height: mediaQuerySize.height * 0.03),
                         if (state.user!.isSuperAdmin)
                           Row(
                             children: [
@@ -81,7 +84,7 @@ class UserForm extends StatelessWidget {
                                           value ?? false));
                                 },
                               ),
-                              const SizedBox(width: 5),
+                              SizedBox(width: mediaQuerySize.width * 0.01),
                               const Flexible(
                                 child: Text(
                                   'Сделать пользователя Администратором',
@@ -89,7 +92,7 @@ class UserForm extends StatelessWidget {
                               )
                             ],
                           ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: mediaQuerySize.height * 0.01),
                         DefaultAppButton(
                           onTap: () async {
                             if (state.isUserEditing) {
@@ -106,7 +109,7 @@ class UserForm extends StatelessWidget {
                                 : 'Создать пользователя',
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        SizedBox(height: mediaQuerySize.height * 0.03),
                         GestureDetector(
                           onTap: () {
                             getIt<UserBloc>()
@@ -116,7 +119,6 @@ class UserForm extends StatelessWidget {
                             color: Colors.transparent,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Icon(Icons.arrow_upward),
                               ],
@@ -135,7 +137,7 @@ class UserForm extends StatelessWidget {
                           child: Text('Добавить нового пользователя')),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                   SizedBox(height:  mediaQuerySize.height * 0.01),
                   const Positioned.fill(
                     child: Align(
                       alignment: Alignment.bottomCenter,

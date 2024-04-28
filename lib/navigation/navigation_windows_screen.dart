@@ -32,7 +32,7 @@ class _NavigationWindowsScreenState extends State<NavigationWindowsScreen> {
   List<Widget> screens = [
     const NewOrderWindowsScreen(),
     const OrdersWindowsScreen(),
-    const AdmingWindowsScreen()
+     AdminWindowsScreen()
   ];
 
   @override
