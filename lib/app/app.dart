@@ -79,7 +79,7 @@ class _AppState extends State<App> {
       initialRoute: Platform.isAndroid 
           ? getIt<AuthRepository>().isAuth
               ? '/navigation'
-              : '/navigation'
+              : '/auth'
           : getIt<AuthRepository>().isAuth 
               ? '/navigation_windows'
               : '/auth_windows',

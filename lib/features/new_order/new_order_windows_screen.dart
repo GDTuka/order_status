@@ -119,7 +119,7 @@ final OrderLocalModel orders = OrderLocalModel(
                     DefaultAppButton(
                       width: mediaQuerySize.width * 0.95,
                       onTap: getStatus,
-                      content: const Text('Получить информацию о заказе'),
+                      content:  Text('Получить информацию о заказе', style: TextStyle(fontSize: mediaQuerySize.width * 0.018),),
                     ),
                     const SizedBox(height: 20),
                     
@@ -144,13 +144,13 @@ final OrderLocalModel orders = OrderLocalModel(
                         color: const Color(0xff6860A8),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: const Center(
+                      child:  Center(
                         child: Text(
                           'Номер заказа',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                              fontSize: mediaQuerySize.width * 0.022),
                         ),
                       ),
                     ),
@@ -166,13 +166,13 @@ final OrderLocalModel orders = OrderLocalModel(
                       color: const Color(0xff6860A8),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Center(
+                    child:  Center(
                       child: Text(
                         'Статус',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20),
+                            fontSize: mediaQuerySize.width * 0.022),
                       ),
                     ),
                   )),

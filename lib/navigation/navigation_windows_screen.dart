@@ -120,7 +120,8 @@ class _NavigationWindowsScreenState extends State<NavigationWindowsScreen> {
                     onTap: _setActiveIndex,
                     isScrollable: true,
                     tabAlignment: TabAlignment.center,
-                    labelColor: Theme.of(context).colorScheme.onSecondary,
+                    labelColor: const Color(0xFFFFE500),
+                    dividerColor: const Color(0xFFFFE500),
                     tabs: const [
                       Tab(icon: Icon(Icons.search)),
                       Tab(icon: Icon(Icons.history)),
