@@ -47,6 +47,26 @@ class _OrdersWindowsScreenState extends State<OrdersWindowsScreen> {
     });
   }
 
+  final List<OrderWindowsWidget> order = [
+    OrderWindowsWidget(
+        order: OrderLocalModel(
+      paymentStatus: "SUCCESS",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2023-04-26T15:18:11.566125+03:00"),
+    )),
+    OrderWindowsWidget(
+        order: OrderLocalModel(
+      paymentStatus: "SUCCES",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2024-04-26T15:18:11.566125+03:00"),
+    )),
+    OrderWindowsWidget(
+        order: OrderLocalModel(
+      paymentStatus: "SUCCESS",
+      order: "fcf1cd80-62bd-1f94-80fb-292677056444",
+      createDate: DateTime.parse("2022-04-26T15:18:11.566125+03:00"),
+    ))
+  ];
   List<OrderLocalModel> orders = [
     OrderLocalModel(
       paymentStatus: "SUCCESS",
@@ -65,7 +85,7 @@ class _OrdersWindowsScreenState extends State<OrdersWindowsScreen> {
     ),
   ];
 
-  final String _sortOrder = 'По убыванию';
+  String _sortOrder = 'По убыванию';
 
   int _currentTabIndex = 0;
 
@@ -114,12 +134,12 @@ class _OrdersWindowsScreenState extends State<OrdersWindowsScreen> {
                   }).toList(),
                   onChanged: (String? value) {
                     setState(() {
-                      // _sortOrder = value!;
+                      _sortOrder = value!;
                       _sortOrder == 'По убыванию'
-                          ? orders.sort(
-                              (a, b) => (b.createDate).compareTo(a.createDate))
-                          : orders.sort(
-                              (a, b) => (a.createDate).compareTo(b.createDate));
+                          ? order.sort((a, b) => (b.order.createDate)
+                              .compareTo(a.order.createDate))
+                          : order.sort((a, b) => (a.order.createDate)
+                              .compareTo(b.order.createDate));
                     });
                   },
                 ),
@@ -148,119 +168,100 @@ class _OrdersWindowsScreenState extends State<OrdersWindowsScreen> {
                     child: CircularProgressIndicator(),
                   )
                 else
-                  Column(
+                  Center(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                            children: [
-                              if (errorText != null) ...[
-                                Text(
-                                  errorText!,
-                                  style: const TextStyle(color: Colors.red),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                              SizedBox(
-                                width: mediaQuerySize.width * 0.5,
-                                child: TextFormField(
-                                  controller: controller,
-                                  decoration: const InputDecoration(
-                                      prefixIcon: Icon(Icons.search),
-                                      hintText: 'Введите номер заказа'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: mediaQuerySize.width * 0.63,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: mediaQuerySize.height * 0.1,
+                              decoration: BoxDecoration(
+                                color: const Color(0xff6860A8),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Номер заказа',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: mediaQuerySize.width * 0.022),
                                 ),
                               ),
-                            ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: mediaQuerySize.width * 0.1,
+                          ),
+                          SizedBox(
+                              child: Container(
+                            width: mediaQuerySize.width * 0.22,
+                            height: mediaQuerySize.height * 0.1,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff6860A8),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Статус',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: mediaQuerySize.width * 0.022),
+                              ),
+                            ),
+                          )),
+                        ],
+                      ),
+                      SizedBox(
+                        height: mediaQuerySize.height * 0.01,
+                      ),
+                      if (isLoading)
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      if (orderModel != null)
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: OrderWindowsWidget(
+                            order: orderModel!,
                           ),
                         ),
-                      ),
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: mediaQuerySize.width * 0.3,
-                                  child: Container(
-                                    width: mediaQuerySize.width * 0.05,
-                                    height: mediaQuerySize.height * 0.06,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xff6860A8),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        'Номер заказа',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize:
-                                                mediaQuerySize.width * 0.022),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: mediaQuerySize.width * 0.05,
-                                ),
-                                SizedBox(
-                                    child: Container(
-                                  width: mediaQuerySize.width * 0.15,
-                                  height: mediaQuerySize.height * 0.06,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff6860A8),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Статус',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize:
-                                              mediaQuerySize.width * 0.022),
-                                    ),
-                                  ),
-                                )),
-                              ],
-                            ),
-                            SizedBox(
-                              height: mediaQuerySize.height * 0.01,
-                            ),
-                            if (isLoading)
-                              const Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                          ],
+                      SizedBox(
+                        width: mediaQuerySize.width,
+                        height: mediaQuerySize.height,
+                        child: ListView.builder(
+                          itemCount: order.length,
+                          itemBuilder: (context, index) {
+                            return order[index];
+                          },
                         ),
                       ),
-                      
                     ],
-                  ),
-                CustomScrollView(
+                  )),
+                const CustomScrollView(
                   slivers: [
                     SliverToBoxAdapter(
                       child: SizedBox(height: 20),
                     ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return OrderWindowsWidget(order: orders[index]);
-                        },
-                        childCount: orders.length,
-                      ),
-                    ),
+                    // SliverList(
+                    //   delegate: SliverChildBuilderDelegate(
+                    //     (context, index) {
+                    //       return OrderWindowsWidget(order: orders[index]);
+                    //     },
+                    //     childCount: orders.length,
+                    //   ),
+                    // ),
                     SliverToBoxAdapter(
                       child: SizedBox(height: 20),
                     ),
                   ],
                 ),
-                
               ],
             ),
           ),
