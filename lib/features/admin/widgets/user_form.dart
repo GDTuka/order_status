@@ -26,7 +26,7 @@ class UserForm extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).colorScheme.inversePrimary,
+              color: const Color(0xFFE7F2E4),
             ),
             child: Stack(
               children: [
@@ -38,7 +38,8 @@ class UserForm extends StatelessWidget {
                         const Text('Добавление пользователя'),
                         const SizedBox(height: 20),
                         TextFormField(
-                          controller: getIt<UserBloc>().adminNewUserNameController,
+                          controller:
+                              getIt<UserBloc>().adminNewUserNameController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Имя',
@@ -48,7 +49,8 @@ class UserForm extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
-                          controller: getIt<UserBloc>().adminNewUserSurnameController,
+                          controller:
+                              getIt<UserBloc>().adminNewUserSurnameController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Фамилия',
@@ -58,7 +60,8 @@ class UserForm extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
-                          controller: getIt<UserBloc>().adminNewUserThirdNameController,
+                          controller:
+                              getIt<UserBloc>().adminNewUserThirdNameController,
                           keyboardType: TextInputType.name,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -73,7 +76,9 @@ class UserForm extends StatelessWidget {
                               Checkbox(
                                 value: state.newUserIsAdmin,
                                 onChanged: (value) {
-                                  getIt<UserBloc>().add(UserEvents.setNewUserAdmin(value ?? false));
+                                  getIt<UserBloc>().add(
+                                      UserEvents.setNewUserAdmin(
+                                          value ?? false));
                                 },
                               ),
                               const SizedBox(width: 5),
@@ -88,19 +93,24 @@ class UserForm extends StatelessWidget {
                         DefaultAppButton(
                           onTap: () async {
                             if (state.isUserEditing) {
-                              getIt<UserBloc>().add(const UserEvents.editUser());
+                              getIt<UserBloc>()
+                                  .add(const UserEvents.editUser());
                             } else {
-                              getIt<UserBloc>().add(const UserEvents.createNewUser());
+                              getIt<UserBloc>()
+                                  .add(const UserEvents.createNewUser());
                             }
                           },
                           content: Text(
-                            state.isUserEditing ? 'Сохранить' : 'Создать пользователя',
+                            state.isUserEditing
+                                ? 'Сохранить'
+                                : 'Создать пользователя',
                           ),
                         ),
                         const SizedBox(height: 20),
                         GestureDetector(
                           onTap: () {
-                            getIt<UserBloc>().add(const UserEvents.toggleNewUserForm());
+                            getIt<UserBloc>()
+                                .add(const UserEvents.toggleNewUserForm());
                           },
                           child: Container(
                             color: Colors.transparent,
@@ -120,7 +130,9 @@ class UserForm extends StatelessWidget {
                   const Positioned.fill(
                     child: Align(
                       alignment: Alignment.topCenter,
-                      child: Padding(padding: EdgeInsets.only(top: 5), child: Text('Добавить нового пользователя')),
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text('Добавить нового пользователя')),
                     ),
                   ),
                   const SizedBox(height: 40),

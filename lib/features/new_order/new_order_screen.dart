@@ -53,7 +53,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
           children: [
             Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
                     if (errorText != null) ...[

@@ -19,7 +19,7 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
-const primaryColor = Color(0xffFFE500);
+const primaryColor = Color(0xff6860A8);
 const secondaryColor = Color(0xffB0BFD5);
 const backgroundColor = Color(0xff1E1C1D);
 const accentColor = Color(0xff6860A8);
