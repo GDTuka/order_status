@@ -18,7 +18,7 @@ class OrderLocalModel {
   factory OrderLocalModel.fromJson(Map<String, dynamic> json) {
     return OrderLocalModel(
       paymentStatus: json['paymentStatus'],
-      order: json['order'],
+      order: json['qrId'],
       createDate: DateTime.parse(json['createDate']),
     );
   }
